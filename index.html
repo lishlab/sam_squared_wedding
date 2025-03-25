@@ -24,7 +24,7 @@
         body, html {
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow: auto;
             font-family: "Sackers Gothic Medium";
             position: relative;
         }
@@ -36,7 +36,7 @@
             left: 0;
             width: 100%;
             padding: 10px 20px;
-            background-color: white;
+            background-color: #D2E7F8; /* Background color set to #D2E7F8 */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -94,20 +94,21 @@
         /* Invitation Image Filling Entire Page */
         .invitation-container {
             width: 100%;
-            height: 100vh; /* Full height of viewport */
+            height: 100%; /* Full height of the viewport */
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow-x: auto; /* Allow horizontal scrolling */
-            overflow-y: hidden;
-            white-space: nowrap; /* Ensure no wrapping occurs */
+            overflow: hidden; /* Prevents horizontal scrolling */
         }
 
         .invitation-image {
-            height: 100%;
-            width: 100%; /* Make the image fill the entire width */
-            object-fit: cover; /* Ensures the image covers the area without distortion */
+            position: absolute; /* Absolute position to fill the container */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Full width of the viewport */
+            height: 100vh; /* Full height of the viewport */
+            object-fit: cover; /* Ensure the image covers the entire area */
             z-index: 0;
         }
 
@@ -132,6 +133,14 @@
             .buttons-container a {
                 font-size: 12px;
                 padding: 8px 20px;
+            }
+
+            .invitation-container {
+                height: auto; /* Allow the height to adjust */
+            }
+
+            body, html {
+                height: auto; /* Allow scrolling of entire page */
             }
         }
 
