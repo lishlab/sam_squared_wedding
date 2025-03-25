@@ -50,7 +50,7 @@
             display: flex;
             flex-direction: row;
             gap: 20px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap; /* Keep buttons in a horizontal line */
             justify-content: center;
         }
 
@@ -103,16 +103,40 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            overflow-x: scroll; /* Allow horizontal scrolling */
         }
 
         .invitation-image {
-            width: 100%;
+            width: 200%; /* Double the width for scrolling */
             height: 100%;
-            object-fit: cover; /* Ensure image covers the container */
+            object-fit: cover;
             position: absolute;
             top: 0;
             left: 0;
             z-index: 0; /* Make sure it's behind the buttons */
+        }
+
+        /* Scroll Buttons */
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 128, 0.7);
+            color: white;
+            font-size: 30px;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        .scroll-button-left {
+            left: 10px;
+        }
+
+        .scroll-button-right {
+            right: 10px;
         }
 
         /* Media Queries for responsiveness */
@@ -122,7 +146,7 @@
             }
 
             .buttons-container {
-                flex-direction: column;
+                flex-direction: row; /* Ensure horizontal layout on smaller screens */
                 gap: 15px;
             }
 
@@ -134,6 +158,7 @@
             /* Change image for mobile */
             .invitation-image {
                 content: url('static/Sam_Squared_Wedding_Invite.jpg'); /* Mobile-specific image */
+                width: 100%; /* Reset width for mobile */
             }
         }
 
@@ -169,7 +194,21 @@
     <!-- Invitation Image Filling Entire Page -->
     <div class="invitation-container">
         <img src="static/invite_test.jpg" alt="Wedding Invitation" class="invitation-image">
+        <!-- Scroll Buttons for Mobile -->
+        <button class="scroll-button scroll-button-left" onclick="scrollImage('left')">‹</button>
+        <button class="scroll-button scroll-button-right" onclick="scrollImage('right')">›</button>
     </div>
+
+    <script>
+        function scrollImage(direction) {
+            const container = document.querySelector('.invitation-container');
+            if (direction === 'left') {
+                container.scrollBy({ left: -300, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: 300, behavior: 'smooth' });
+            }
+        }
+    </script>
 
 </body>
 </html>
