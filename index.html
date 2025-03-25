@@ -91,13 +91,13 @@
         /* Invitation Image Filling Entire Page */
         .invitation-container {
             width: 100%;
-            height: 100vh; /* Full height of the viewport */
+            height: calc(100vh - 60px); /* Full height minus the header height */
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            margin-top: 60px; /* Push down content to make room for header */
             overflow: hidden; /* Hide any excess image part */
+            margin-top: 60px; /* Offset the image below the header */
         }
 
         .invitation-image {
