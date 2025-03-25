@@ -37,58 +37,49 @@
             left: 0;
         }
 
-        /* Wedding Registry Button - Top Left */
-        .registry-button {
+        /* Wedding Registry and RSVP Buttons at Top Left */
+        .buttons-container {
             position: absolute;
             top: 5%;
             left: 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .buttons-container a {
+            padding: 10px 20px;
             background-color: transparent;
-            color: white;
+            color: navy;
             text-decoration: none;
             font-size: 16px;
-            padding: 10px 20px;
-            border: 2px solid white;
-            border-radius: 5px;
-        }
-
-        /* RSVP buttons */
-        .buttons {
-            position: absolute;
-            bottom: 10%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20%;
-        }
-
-        .buttons a {
-            padding: 10px 20px;
-            background-color: transparent;
-            color: white;
-            text-decoration: none;
-            border: 2px solid white;
+            border: 2px solid gold;
             border-radius: 5px;
             text-align: center;
         }
+
+        /* Wedding Registry Button */
+        .registry-button {
+            margin-bottom: 10px; /* Space between buttons */
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Wedding Registry Button -->
-    <a href="https://www.amazon.com/wedding/registry/10TMTZV2ATA5T" target="_blank" class="registry-button">Wedding Registry</a>
+    <!-- Buttons Container -->
+    <div class="buttons-container">
+        <!-- Wedding Registry Button -->
+        <a href="https://www.amazon.com/wedding/registry/10TMTZV2ATA5T" target="_blank" class="registry-button">Wedding Registry</a>
+
+        <!-- RSVP Buttons -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank">RSVP in English</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank">RSVP in Hebrew</a>
+    </div>
 
     <!-- Invitation Image Filling Entire Page -->
     <div class="invitation-container">
         <img src="static/invite_test.jpg" alt="Wedding Invitation" class="invitation-image">
-    </div>
-
-    <!-- RSVP Buttons -->
-    <div class="buttons">
-        <!-- English RSVP Button -->
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank">RSVP in English</a>
-        
-        <!-- Hebrew RSVP Button -->
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank">RSVP in Hebrew</a>
     </div>
 
 </body>
