@@ -45,6 +45,7 @@
         }
 
         .buttons-container a {
+            position: relative; /* Required for absolute positioning of the GIF */
             padding: 12px 30px;
             background-size: 100% 100%; /* Stretch the image to fully fill the button */
             background-repeat: no-repeat; /* Avoid repeating the image */
@@ -60,6 +61,29 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: slight shadow for 3D effect */
             transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
             background-color: transparent; /* Make the background transparent to show image */
+            overflow: hidden; /* Prevents the GIF from extending outside the button */
+        }
+        
+        /* Add animated GIF when hovering */
+        .buttons-container a::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('static/confetti.gif');
+            background-size: cover;
+            background-position: center;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.3s ease-in-out;
+            z-index: -1; /* Places GIF behind text */
+            border-radius: 25px; /* Ensure it follows button shape */
+        }
+
+        /* Show GIF on hover */
+        .buttons-container a:hover::after {
+            opacity: 1;
         }
 
         /* Hover effect for buttons */
