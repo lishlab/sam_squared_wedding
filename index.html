@@ -5,21 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
     <style>
-        body {
-            text-align: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        .invitation-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
         }
 
         .invitation-image {
             width: 100%;
-            max-width: 1000px;
-            display: block;
-            margin: 0 auto;
-            position: relative;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
-        /* Styling for buttons */
+        /* Wedding Registry Button - Top Left */
+        .registry-button {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            background-color: transparent;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+        }
+
+        /* RSVP buttons */
         .buttons {
             position: absolute;
             bottom: 10%;
@@ -31,25 +63,12 @@
 
         .buttons a {
             padding: 10px 20px;
-            background-color: #007BFF;
+            background-color: transparent;
             color: white;
             text-decoration: none;
+            border: 2px solid white;
             border-radius: 5px;
             text-align: center;
-        }
-
-        /* Wedding Registry Button */
-        .registry-button {
-            position: absolute;
-            top: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #FF5722;
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
         }
     </style>
 </head>
@@ -58,12 +77,12 @@
     <!-- Wedding Registry Button -->
     <a href="https://www.amazon.com/wedding/registry/10TMTZV2ATA5T" target="_blank" class="registry-button">Wedding Registry</a>
 
-    <h1>Welcome to our Wedding Invitation!</h1>
+    <!-- Invitation Image Filling Entire Page -->
+    <div class="invitation-container">
+        <img src="static/invite_test.jpg" alt="Wedding Invitation" class="invitation-image">
+    </div>
 
-    <!-- Display uploaded invitation image -->
-    <img src="static/invite_test.jpg" alt="Wedding Invitation" class="invitation-image">
-
-    <!-- RSVP buttons -->
+    <!-- RSVP Buttons -->
     <div class="buttons">
         <!-- English RSVP Button -->
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank">RSVP in English</a>
