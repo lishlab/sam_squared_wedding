@@ -90,12 +90,12 @@
         /* Invitation Image Filling Entire Page */
         .invitation-container {
             width: 100%;
-            height: 100%;
+            height: calc(100vh - 60px); /* Adjust height to fit within the full viewport, minus the header */
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            margin-top: 60px; /* Push down content to make room for header */
+            /*margin-top: 60px; /* Push down content to make room for header */
         }
 
         .invitation-image {
