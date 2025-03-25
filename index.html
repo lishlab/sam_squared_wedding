@@ -35,6 +35,7 @@
             position: absolute;
             top: 0;
             left: 0;
+            z-index: 0; /* Ensure the image stays at the bottom */
         }
 
         /* Wedding Registry and RSVP Buttons at Top Left */
@@ -46,17 +47,26 @@
             flex-direction: column;
             gap: 10px;
             z-index: 1; /* Ensure buttons stay on top of the image */
+            font-family: 'Garamond', serif;
         }
 
         .buttons-container a {
-            padding: 10px 20px;
-            background-color: transparent;
+            padding: 12px 30px;
+            background-color: gold; /* Set background color for bubble effect */
             color: navy;
             text-decoration: none;
             font-size: 16px;
-            border: 2px solid gold;
-            border-radius: 5px;
+            border: none; /* Remove the border */
+            border-radius: 25px; /* Increase the border-radius to make the button more bubble-like */
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: slight shadow for 3D effect */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+        }
+
+        /* Hover effect for buttons */
+        .buttons-container a:hover {
+            transform: scale(1.05); /* Slightly increase size on hover */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
         }
 
         /* Wedding Registry Button */
@@ -74,8 +84,8 @@
         <a href="https://www.amazon.com/wedding/registry/10TMTZV2ATA5T" target="_blank" class="registry-button">Wedding Registry</a>
 
         <!-- RSVP Buttons -->
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank">RSVP in English</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank">RSVP in Hebrew</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank">RSVP</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank">הגיב להזמנה</a>
     </div>
 
     <!-- Invitation Image Filling Entire Page -->
