@@ -42,13 +42,11 @@
 
         .buttons-container a {
             padding: 12px 30px;
-            background-image: url('static/bubble2.png'); /* Updated to use .avif image format */
-            background-size: 100% 100%; /* Stretch the image to fully fill the button (distorting it) */
+            background-size: 100% 100%; /* Stretch the image to fully fill the button */
             background-repeat: no-repeat; /* Avoid repeating the image */
-            background-position: left; /* Align image to the left */
-            /*color: white;*/ /* White text */
-            color: rgba(0, 0, 128, 0.3)
-            text-decoration: none;
+            background-position: center; /* Center the image in the button */
+            color: white; /* White text */
+            text-decoration: none; /* Remove underline from text */
             font-size: 16px;
             border: none; /* Remove border */
             border-radius: 25px; /* Bubble-like appearance */
@@ -62,6 +60,19 @@
         .buttons-container a:hover {
             transform: scale(1.05); /* Slightly increase size on hover */
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+        }
+
+        /* Specific button backgrounds */
+        .registry-button {
+            background-image: url('static/bubble1.png'); /* Registry button background */
+        }
+
+        .rsvp-button {
+            background-image: url('static/bubble2.png'); /* RSVP button background */
+        }
+
+        .hebrew-button {
+            background-image: url('static/bubble3.png'); /* Hebrew button background */
         }
 
         /* Invitation Image Filling Entire Page */
@@ -95,9 +106,11 @@
             <!-- Wedding Registry Button -->
             <a href="https://www.amazon.com/wedding/registry/10TMTZV2ATA5T" target="_blank" class="registry-button">Registry</a>
 
-            <!-- RSVP Buttons -->
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank">RSVP</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank">הגיב להזמנה</a>
+            <!-- RSVP Button -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
+
+            <!-- Hebrew Button -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
         </div>
     </div>
 
