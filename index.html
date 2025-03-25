@@ -37,7 +37,6 @@
             width: 100%;
             padding: 10px 20px;
             background-color: white;
-            /*background-image: url('static/Birds-eye-view-Kotel.jpg.webp'); /* Background image */
             background-size: cover; /* Ensure the image covers the entire header */
             background-position: center; /* Center the background image */
             display: flex;
@@ -58,9 +57,6 @@
         .buttons-container a {
             font-family: "Sackers Gothic Medium", Arial, sans-serif;
             padding: 12px 30px;
-            background-size: 100% 100%; /* Stretch the image to fully fill the button */
-            background-repeat: no-repeat; /* Avoid repeating the image */
-            background-position: center; /* Center the image in the button */
             color: rgba(0, 0, 128, 0.4);
             text-decoration: none; /* Remove underline from text */
             font-size: 16px;
@@ -70,6 +66,25 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: slight shadow for 3D effect */
             transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
             background-color: transparent; /* Make the background transparent to show image */
+        }
+
+        /* Specific button background images */
+        .buttons-container .registry-button {
+            background-image: url('static/bubble1.png'); /* Background for Registry button */
+            background-size: cover; /* Stretch the image to fully fill the button */
+            background-position: center; /* Center the image in the button */
+        }
+
+        .buttons-container .rsvp-button {
+            background-image: url('static/bubble2.png'); /* Background for RSVP button */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .buttons-container .hebrew-button {
+            background-image: url('static/bubble3.png'); /* Background for Hebrew button */
+            background-size: cover;
+            background-position: center;
         }
 
         /* Hover effect for buttons */
