@@ -36,7 +36,7 @@
             left: 0;
             width: 100%;
             padding: 10px 20px;
-            background-color: #EEF5FB; /* Background color set to #D2E7F8 */
+            background-color: #F0F5FA; /* Background color 
             background-size: cover;
             background-position: center;
             display: flex;
@@ -94,7 +94,7 @@
         /* Invitation Image Filling Entire Page */
         .invitation-container {
             width: 100%;
-            height: 100vh; /* Make sure the container fills the viewport */
+            height: calc(100vh - 60px); /* Make sure the container fills the viewport minus header */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -127,6 +127,10 @@
                 font-size: 14px;
                 padding: 10px 25px;
             }
+
+            .invitation-container {
+                height: calc(100vh - 50px); /* Adjust for smaller header size */
+            }
         }
 
         @media (max-width: 480px) {
@@ -137,11 +141,11 @@
 
             /* Keep invitation-container height at full viewport height for small screens */
             .invitation-container {
-                height: 100vh; /* Full height for mobile */
+                height: calc(100vh - 60px); /* Ensure full height */
             }
 
             body, html {
-                height: 100vh; /* Ensure the whole page takes full height */
+                height: 100%; /* Ensure the whole page takes full height */
             }
         }
 
@@ -153,4 +157,15 @@
     <div class="header">
         <div class="buttons-container">
             <a href="https://www.amazon.com/wedding/registry/10TMTZV2ATA5T" target="_blank" class="registry-button">Registry</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQ
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
+        </div>
+    </div>
+
+    <!-- Invitation Image Filling Entire Page -->
+    <div class="invitation-container">
+        <img src="static/invite_test.jpg" alt="Wedding Invitation" class="invitation-image">
+    </div>
+
+</body>
+</html>
