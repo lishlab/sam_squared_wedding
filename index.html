@@ -50,7 +50,7 @@
             display: flex;
             flex-direction: row;
             gap: 20px;
-            flex-wrap: nowrap; /* Keep buttons in a horizontal line */
+            flex-wrap: wrap;
             justify-content: center;
         }
 
@@ -103,16 +103,17 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            overflow-x: auto; /* Horizontal scrollbar will appear on mobile */
+            overflow-x: scroll; /* Allow horizontal scrolling */
         }
 
         .invitation-image {
-            width: 200%; /* Double the width for scrolling */
-            height: 100%;
-            object-fit: cover;
+            width: 100%; /* Full width for mobile */
+            max-width: 100%; /* Ensure it doesn't exceed screen size */
+            object-fit: contain; /* Maintain aspect ratio */
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the image */
             z-index: 0; /* Make sure it's behind the buttons */
         }
 
@@ -123,7 +124,7 @@
             }
 
             .buttons-container {
-                flex-direction: row; /* Ensure horizontal layout on smaller screens */
+                flex-direction: column;
                 gap: 15px;
             }
 
@@ -135,7 +136,6 @@
             /* Change image for mobile */
             .invitation-image {
                 content: url('static/Sam_Squared_Wedding_Invite.jpg'); /* Mobile-specific image */
-                width: 100%; /* Reset width for mobile */
             }
         }
 
