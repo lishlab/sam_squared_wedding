@@ -37,81 +37,78 @@
             width: 100%;
             padding: 10px 20px;
             background-color: white;
-            background-size: cover; /* Ensure the image covers the entire header */
-            background-position: center; /* Center the background image */
+            background-size: cover;
+            background-position: center;
             display: flex;
-            justify-content: center; /* Center the buttons horizontally */
+            justify-content: center;
             align-items: center;
-            z-index: 10; /* Make sure header is on top */
-            border-bottom: 3px solid rgba(0, 0, 128, 0.3); /* Reduced opacity navy border */
+            z-index: 10;
+            border-bottom: 3px solid rgba(0, 0, 128, 0.3);
         }
 
         .buttons-container {
             display: flex;
             flex-direction: row;
-            gap: 20px; /* Space between buttons */
-            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
-            justify-content: center; /* Center buttons horizontally */
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .buttons-container a {
             font-family: "Sackers Gothic Medium", Arial, sans-serif;
             padding: 12px 30px;
             color: rgba(0, 0, 128, 0.4);
-            text-decoration: none; /* Remove underline from text */
+            text-decoration: none;
             font-size: 16px;
-            border: none; /* Remove border */
-            border-radius: 25px; /* Bubble-like appearance */
+            border: none;
+            border-radius: 25px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: slight shadow for 3D effect */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
-            background-color: transparent; /* Make the background transparent to show image */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: transparent;
         }
 
-        /* Specific button background images */
         .buttons-container .registry-button {
-            background-image: url('static/bubble1.png'); /* Background for Registry button */
-            background-size: cover; /* Stretch the image to fully fill the button */
-            background-position: center; /* Center the image in the button */
+            background-image: url('static/bubble1.png');
+            background-size: cover;
+            background-position: center;
         }
 
         .buttons-container .rsvp-button {
-            background-image: url('static/bubble2.png'); /* Background for RSVP button */
+            background-image: url('static/bubble2.png');
             background-size: cover;
             background-position: center;
         }
 
         .buttons-container .hebrew-button {
-            background-image: url('static/bubble3.png'); /* Background for Hebrew button */
+            background-image: url('static/bubble3.png');
             background-size: cover;
             background-position: center;
         }
 
-        /* Hover effect for buttons */
         .buttons-container a:hover {
-            transform: scale(1.05); /* Slightly increase size on hover */
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
         }
 
         /* Invitation Image Filling Entire Page */
         .invitation-container {
             width: 100%;
-            height: calc(100vh - 60px); /* Full height minus the header height */
+            height: 100vh; /* Set to full height of viewport */
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden; /* Hide any excess image part */
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
         }
 
         .invitation-image {
-            width: 100%;
             height: 100%;
-            object-fit: cover;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            z-index: 0; /* Ensure the image stays at the bottom */
+            width: auto;
+            object-fit: contain;
+            z-index: 0;
         }
 
         /* Media Queries for responsiveness */
@@ -121,24 +118,20 @@
             }
 
             .buttons-container {
-                flex-direction: column; /* Stack buttons vertically on smaller screens */
-                gap: 15px; /* Reduce gap between buttons */
+                flex-direction: column;
+                gap: 15px;
             }
 
             .buttons-container a {
-                font-size: 14px; /* Smaller font size on smaller screens */
-                padding: 10px 25px; /* Adjust button padding */
+                font-size: 14px;
+                padding: 10px 25px;
             }
         }
 
         @media (max-width: 480px) {
             .buttons-container a {
-                font-size: 12px; /* Further reduce font size on mobile */
-                padding: 8px 20px; /* Adjust padding for smaller screens */
-            }
-
-            .invitation-container {
-                height: calc(100vh - 50px); /* Reduce height on small screens */
+                font-size: 12px;
+                padding: 8px 20px;
             }
         }
 
@@ -149,13 +142,8 @@
     <!-- Header with Buttons -->
     <div class="header">
         <div class="buttons-container">
-            <!-- Wedding Registry Button -->
             <a href="https://www.amazon.com/wedding/registry/10TMTZV2ATA5T" target="_blank" class="registry-button">Registry</a>
-
-            <!-- RSVP Button -->
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
-
-            <!-- Hebrew Button -->
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
         </div>
     </div>
