@@ -18,6 +18,17 @@
             font-family: Arial, sans-serif;
             position: relative;
         }
+        
+        @font-face {
+            font-family: "Sackers Gothic Medium";
+            src: url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.eot");
+            src: url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.eot?#iefix")format("embedded-opentype"),
+            url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.woff2")format("woff2"),
+            url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.woff")format("woff"),
+            url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.ttf")format("truetype"),
+            url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.svg#Sackers Gothic Medium")format("svg");
+        }
+
 
         /* Header Section with Confetti Background */
         .header {
@@ -47,6 +58,7 @@
 
         /* Buttons */
         .buttons-container a {
+            font-family: "Sackers Gothic Medium", Arial, sans-serif;
             position: relative;
             padding: 12px 30px;
             background-size: 100% 100%;
@@ -113,21 +125,20 @@
         .invitation-container {
             width: 100%;
             /*height: 100%;*/
-            height: calc(100vh - 80px); /* Adjust for header height */
+            height: 100vh; /* Full viewport height */
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            margin-top: 80px; /* Increased to prevent overlap */
+            overflow: hidden; /* Prevent scrollbars */
         }
 
         .invitation-image {
             width: 100%;
-            height: 100%;
-            /*object-fit: cover;*/
-            object-fit: contain; /* Ensure full image is visible */
+            height: calc(100vh - 80px); /* Full height minus header */
+            object-fit: cover; /* Cover full area without stretching */
             position: absolute;
-            top: 0;
+            top: 80px; /* Push down below header */
             left: 0;
             z-index: -1;
         }
