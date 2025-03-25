@@ -42,8 +42,9 @@
 
         .buttons-container a {
             padding: 12px 30px;
-            background-image: url('static/bubble.jpg'); /* Background image for buttons */
-            background-size: cover; /* Make sure the image covers the button */
+            background-image: url('static/bubble.avif'); /* Updated to use .avif image format */
+            background-size: contain; /* Ensures the image fits the button, keeping its transparency */
+            background-repeat: no-repeat; /* Avoid repeating the image */
             color: white; /* White text */
             text-decoration: none;
             font-size: 16px;
@@ -52,6 +53,7 @@
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: slight shadow for 3D effect */
             transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+            background-color: transparent; /* Make the background transparent to show image */
         }
 
         /* Hover effect for buttons */
