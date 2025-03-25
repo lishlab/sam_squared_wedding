@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        .invitation-image {
+            width: 100%;
+            max-width: 1000px;
+            display: block;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Styling for buttons */
+        .buttons {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20%;
+        }
+
+        .buttons a {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Wedding Registry Button */
+        .registry-button {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #FF5722;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Wedding Registry Button -->
+    <a href="https://www.amazon.com/wedding/registry/10TMTZV2ATA5T" target="_blank" class="registry-button">Wedding Registry</a>
+
+    <h1>Welcome to our Wedding Invitation!</h1>
+
+    <!-- Display uploaded invitation image -->
+    <img src="static/uploads/invite_test.jpg" alt="Wedding Invitation" class="invitation-image">
+
+    <!-- RSVP buttons -->
+    <div class="buttons">
+        <!-- English RSVP Button -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank">RSVP in English</a>
+        
+        <!-- Hebrew RSVP Button -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank">RSVP in Hebrew</a>
+    </div>
+
+</body>
+</html>
