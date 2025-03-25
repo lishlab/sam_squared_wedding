@@ -48,10 +48,11 @@
 
         .buttons-container {
             display: flex;
-            flex-direction: row;
-            gap: 20px;
-            flex-wrap: wrap;
+            flex-direction: row; /* Always horizontal */
+            gap: 15px;
+            flex-wrap: wrap; /* Allow wrapping on very small screens */
             justify-content: center;
+            align-items: center;
         }
 
         .buttons-container a {
