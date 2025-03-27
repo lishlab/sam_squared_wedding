@@ -45,13 +45,30 @@
         .buttons-container a {
             font-family: "Sackers Gothic Medium", Arial, sans-serif;
             padding: 12px 30px;
-            color: rgba(0, 0, 128, 0.6);
+            color: rgba(0, 0, 128, 0.9);
             text-decoration: none;
             font-size: 16px;
             border: none;
             border-radius: 25px;
             text-align: center;
-            background-color: transparent;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* Added shadow */
+        }
+
+        .rsvp-button {
+            background-image: url('static/bubble2.png');
+        }
+
+        .hebrew-button {
+            background-image: url('static/bubble3.png');
         }
 
         .invitation-container {
@@ -86,7 +103,7 @@
             max-width: 100%;
             object-fit: contain;
             opacity: 0;
-            transition: opacity 2s ease-in-out;
+            transition: opacity 1s ease-in-out; /* Faster transition */
         }
     </style>
 </head>
@@ -111,9 +128,13 @@
     </div>
 
     <script>
-        document.getElementById('introVideo').addEventListener('ended', function() {
+        const video = document.getElementById('introVideo');
+        video.playbackRate = 0.5; // Play at half speed
+
+        video.addEventListener('ended', function() {
             document.getElementById('inviteImage').style.opacity = '1';
         });
     </script>
 </body>
 </html>
+
