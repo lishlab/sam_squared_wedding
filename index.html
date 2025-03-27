@@ -104,7 +104,13 @@
             max-width: 100%;
             object-fit: contain;
             opacity: 0;
-            transition: opacity 0.5s ease-in; /* Faster fade-in */
+            transition: opacity 0.6s ease-in; /* Faster fade-in */
+        }
+
+        @media (max-width: 768px) {
+            #inviteImage {
+                content: url('static/Sam_Squared_Wedding_Invite.jpg'); /* Load different image on mobile */
+            }
         }
     </style>
 </head>
@@ -145,6 +151,18 @@
         video.addEventListener('ended', function() {
             video.style.display = 'none'; // Hide video once it's faded out
         });
+
+        // Ensure correct image loads on mobile
+        function updateImageForMobile() {
+            if (window.innerWidth <= 768) {
+                image.src = 'static/Sam_Squared_Wedding_Invite.jpg';
+            } else {
+                image.src = 'static/invite_test.jpg';
+            }
+        }
+
+        window.addEventListener('resize', updateImageForMobile);
+        updateImageForMobile(); // Run on load
     </script>
 </body>
 </html>
