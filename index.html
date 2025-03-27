@@ -11,16 +11,6 @@
             box-sizing: border-box;
         }
 
-        @font-face {
-            font-family: "Sackers Gothic Medium";
-            src: url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.eot");
-            src: url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.eot?#iefix")format("embedded-opentype"),
-            url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.woff2")format("woff2"),
-            url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.woff")format("woff"),
-            url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.ttf")format("truetype"),
-            url("https://db.onlinewebfonts.com/t/ac1e7ef3bb0206a73c092ad519457516.svg#Sackers Gothic Medium")format("svg");
-        }
-
         body, html {
             width: 100%;
             height: 100%;
@@ -29,16 +19,13 @@
             position: relative;
         }
 
-        /* Header Section */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             padding: 10px 20px;
-            background-color: #F0F5FA; /* Header background color */
-            background-size: cover;
-            background-position: center;
+            background-color: #F0F5FA;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -48,9 +35,9 @@
 
         .buttons-container {
             display: flex;
-            flex-direction: row; /* Always horizontal */
+            flex-direction: row;
             gap: 15px;
-            flex-wrap: wrap; /* Allow wrapping on very small screens */
+            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
         }
@@ -58,118 +45,75 @@
         .buttons-container a {
             font-family: "Sackers Gothic Medium", Arial, sans-serif;
             padding: 12px 30px;
-            background-size: 100% 100%; /* Stretch the image to fully fill the button */
-            background-repeat: no-repeat; /* Avoid repeating the image */
-            background-position: center; /* Center the image in the button */
             color: rgba(0, 0, 128, 0.6);
             text-decoration: none;
             font-size: 16px;
             border: none;
             border-radius: 25px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             background-color: transparent;
         }
 
-        .buttons-container .rsvp-button {
-            background-image: url('static/bubble2.png');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .buttons-container .hebrew-button {
-            background-image: url('static/bubble3.png');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .buttons-container a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Invitation Image Filling Entire Page */
         .invitation-container {
             width: 100%;
-            height: 100vh; /* Full height of the viewport */
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            overflow-x: scroll; /* Allow horizontal scrolling */
         }
 
-        .invitation-image {
-            width: 100%; /* Full width for mobile */
-            max-width: 100%; /* Ensure it doesn't exceed screen size */
-            object-fit: contain; /* Maintain aspect ratio */
+        .video-container, .image-container {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* Center the image */
-            z-index: 0; /* Make sure it's behind the buttons */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Media Queries for responsiveness */
-        @media (max-width: 768px) {
-            .header {
-                padding: 10px 15px;
-            }
-
-            .buttons-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .buttons-container a {
-                font-size: 14px;
-                padding: 10px 25px;
-            }
-
-            /* Change image for mobile */
-            .invitation-image {
-                content: url('static/Sam_Squared_Wedding_Invite.jpg'); /* Mobile-specific image */
-            }
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        @media (max-width: 480px) {
-            .buttons-container a {
-                font-size: 12px;
-                padding: 8px 20px;
-            }
-
-            .invitation-container {
-                height: 100vh; /* Maintain full height */
-            }
-
-            body, html {
-                height: 100%; /* Ensure the whole page fills the screen */
-                overflow-y: scroll; /* Allow vertical scrolling */
-            }
+        .image-container img {
+            width: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
-
     </style>
 </head>
 <body>
-
-    <!-- Header with Buttons -->
     <div class="header">
         <div class="buttons-container">
-            <!-- <a href="https://www.amazon.com/wedding/registry/10TMTZV2ATA5T" target="_blank" class="registry-button">Registry</a> -->
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
         </div>
     </div>
 
-    <!-- Invitation Image Filling Entire Page -->
     <div class="invitation-container">
-        <img src="static/invite_test.jpg" alt="Wedding Invitation" class="invitation-image">
+        <div class="video-container">
+            <video id="introVideo" autoplay muted playsinline>
+                <source src="static/sam_squared_invite.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="image-container">
+            <img id="inviteImage" src="static/invite_test.jpg" alt="Wedding Invitation">
+        </div>
     </div>
 
-    <!-- Background Music -->
-    <iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1495091046&color=%233d3d3d&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=true" width="0" height="0" frameborder="no" scrolling="no" allow="autoplay"></iframe>
-
+    <script>
+        document.getElementById('introVideo').addEventListener('ended', function() {
+            document.getElementById('inviteImage').style.opacity = '1';
+        });
+    </script>
 </body>
 </html>
