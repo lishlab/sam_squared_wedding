@@ -37,12 +37,9 @@
             display: flex;
             flex-direction: row;
             gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
-        }
-
-        .banner-image {
-            height: 50px;
-            width: auto;
         }
 
         .buttons-container a {
@@ -63,7 +60,6 @@
             height: 50px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             font-weight: bold;
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .rsvp-button {
@@ -99,7 +95,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.5s ease-out;
         }
 
         .image-container img {
@@ -107,13 +102,7 @@
             max-width: 100%;
             object-fit: contain;
             opacity: 0;
-            transition: opacity 0.6s ease-in;
-        }
-
-        @media (max-width: 768px) {
-            #inviteImage {
-                content: url('static/Sam_Squared_Wedding_Invite.jpg');
-            }
+            transition: opacity 0.5s ease-in-out; /* Faster transition */
         }
     </style>
 </head>
@@ -121,9 +110,6 @@
     <div class="header">
         <div class="buttons-container">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
-            
-            <img src="static/hebrew_banner.png" alt="Hebrew Banner" class="banner-image">
-                    
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
         </div>
     </div>
@@ -131,7 +117,7 @@
     <div class="invitation-container">
         <div class="video-container">
             <video id="introVideo" autoplay muted playsinline>
-                <source src="static/invite_test.mp4" type="video/mp4">
+                <source src="static/sam_squared_invite.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -142,32 +128,13 @@
 
     <script>
         const video = document.getElementById('introVideo');
-        const image = document.getElementById('inviteImage');
+        const inviteImage = document.getElementById('inviteImage');
 
-        video.playbackRate = 0.5;
-
-        video.addEventListener('timeupdate', function() {
-            if (video.currentTime >= video.duration - 1) {
-                video.style.opacity = '0';
-                image.style.opacity = '1';
-            }
-        });
+        video.playbackRate = 0.5; // Play video at half speed
 
         video.addEventListener('ended', function() {
-            video.style.display = 'none';
+            inviteImage.style.opacity = '1';
         });
-
-        function updateImageForMobile() {
-            if (window.innerWidth <= 768) {
-                image.src = 'static/Sam_Squared_Wedding_Invite.jpg';
-            } else {
-                image.src = 'static/invite_test.jpg';
-            }
-        }
-
-        window.addEventListener('resize', updateImageForMobile);
-        updateImageForMobile();
     </script>
 </body>
 </html>
-
