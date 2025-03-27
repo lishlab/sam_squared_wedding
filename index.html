@@ -37,9 +37,18 @@
             display: flex;
             flex-direction: row;
             gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
             align-items: center;
+        }
+
+        .banner-image {
+            height: 50px;
+            width: auto;
+        }
+
+        @media (max-width: 768px) {
+            .banner-image {
+                display: none;
+            }
         }
 
         .buttons-container a {
@@ -102,7 +111,7 @@
             max-width: 100%;
             object-fit: contain;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out; /* Faster transition */
+            transition: opacity 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -110,6 +119,7 @@
     <div class="header">
         <div class="buttons-container">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
+            <img src="static/hebrew_banner.png" alt="Hebrew Banner" class="banner-image">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
         </div>
     </div>
@@ -130,11 +140,22 @@
         const video = document.getElementById('introVideo');
         const inviteImage = document.getElementById('inviteImage');
 
-        video.playbackRate = 0.5; // Play video at half speed
+        video.playbackRate = 0.5;
 
         video.addEventListener('ended', function() {
             inviteImage.style.opacity = '1';
         });
+
+        function updateImageForMobile() {
+            if (window.innerWidth <= 768) {
+                inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg';
+            } else {
+                inviteImage.src = 'static/invite_test.jpg';
+            }
+        }
+
+        window.addEventListener('resize', updateImageForMobile);
+        updateImageForMobile();
     </script>
 </body>
 </html>
