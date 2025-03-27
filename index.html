@@ -37,14 +37,13 @@
             display: flex;
             flex-direction: row;
             gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
             align-items: center;
         }
-        
+
         .banner-image {
-            height: 50px; /* Adjust height as needed */
+            height: 50px;
             width: auto;
+        }
 
         .buttons-container a {
             font-family: "Sackers Gothic Medium", Arial, sans-serif;
@@ -100,7 +99,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.5s ease-out; /* Fast fade-out */
+            transition: opacity 0.5s ease-out;
         }
 
         .image-container img {
@@ -108,12 +107,12 @@
             max-width: 100%;
             object-fit: contain;
             opacity: 0;
-            transition: opacity 0.6s ease-in; /* Faster fade-in */
+            transition: opacity 0.6s ease-in;
         }
 
         @media (max-width: 768px) {
             #inviteImage {
-                content: url('static/Sam_Squared_Wedding_Invite.jpg'); /* Load different image on mobile */
+                content: url('static/Sam_Squared_Wedding_Invite.jpg');
             }
         }
     </style>
@@ -122,6 +121,7 @@
     <div class="header">
         <div class="buttons-container">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
+            
             <img src="static/hebrew_banner.jpg" alt="Hebrew Banner" class="banner-image">
                     
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
@@ -144,10 +144,9 @@
         const video = document.getElementById('introVideo');
         const image = document.getElementById('inviteImage');
 
-        video.playbackRate = 0.5; // Play at half speed
+        video.playbackRate = 0.5;
 
         video.addEventListener('timeupdate', function() {
-            // Start fading out video slightly before the end
             if (video.currentTime >= video.duration - 1) {
                 video.style.opacity = '0';
                 image.style.opacity = '1';
@@ -155,10 +154,9 @@
         });
 
         video.addEventListener('ended', function() {
-            video.style.display = 'none'; // Hide video once it's faded out
+            video.style.display = 'none';
         });
 
-        // Ensure correct image loads on mobile
         function updateImageForMobile() {
             if (window.innerWidth <= 768) {
                 image.src = 'static/Sam_Squared_Wedding_Invite.jpg';
@@ -168,7 +166,8 @@
         }
 
         window.addEventListener('resize', updateImageForMobile);
-        updateImageForMobile(); // Run on load
+        updateImageForMobile();
     </script>
 </body>
 </html>
+
