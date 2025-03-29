@@ -45,12 +45,6 @@
             width: auto;
         }
 
-        @media (max-width: 768px) {
-            .banner-image img {
-                display: 95vw; /* Adjust for smaller screens */
-            }
-        }
-
         .buttons-container a {
             font-family: "Sackers Gothic Medium", Arial, sans-serif;
             padding: 12px 30px;
@@ -61,7 +55,6 @@
             border-radius: 25px;
             text-align: center;
             background-size: cover;
-            background-size: 100% 100%; /* Stretch background to cover button */
             background-position: center;
             display: flex;
             align-items: center;
@@ -100,12 +93,12 @@
         }
 
         .video-container {
-            position: absolute;
+            position: relative;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: black;
+            background: white;
             z-index: 5;
             display: flex;
             align-items: center;
@@ -132,7 +125,7 @@
         .image-container img {
             width: 100%;
             height: 100%;
-            object-fit: contain;  /* Ensures the image maintains its aspect ratio */
+            object-fit: contain;
             backface-visibility: hidden;
             position: absolute;
         }
@@ -140,7 +133,6 @@
         .flipped {
             transform: rotateY(180deg);
         }
-
         /* Media query to hide the Hebrew Banner on mobile devices */
         @media (max-width: 768px) {
             #hebrewBanner {
@@ -175,8 +167,9 @@
             </video>
         </div>
 
-        <!-- Image Container -->
+        <!-- Image Container for Web -->
         <div class="image-container" id="imageContainer">
+            <img id="inviteImageWeb" src="static/invite_test.jpg" alt="Wedding Invitation Web" class="web-image">
             <img id="inviteImageFront" src="static/Sam_Squared_Wedding_Invite.jpg" alt="Wedding Invitation">
             <img id="inviteImageBack" src="static/hebrew_invite.jpg" alt="Hebrew Wedding Invitation" style="transform: rotateY(180deg);">
         </div>
