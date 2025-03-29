@@ -132,8 +132,18 @@
             object-fit: contain;
             backface-visibility: hidden;
             position: absolute;
+            opacity: 0; /* Ensure images are initially hidden */
+            transition: opacity 1s ease-in-out; /* Smooth fade-in effect */
         }
 
+        #inviteImageWeb {
+            opacity: 0;  /* Make sure it starts hidden */
+        }
+
+        #inviteImageFront, #inviteImageBack {
+            opacity: 0;  /* Make sure they start hidden on mobile */
+        }
+        
         .flipped {
             transform: rotateY(180deg);
         }
@@ -183,6 +193,9 @@
         const introVideo = document.getElementById('introVideo');
         const videoContainer = document.getElementById('videoContainer');
         const imageContainer = document.getElementById('imageContainer');
+        const inviteImageWeb = document.getElementById('inviteImageWeb');
+        const inviteImageFront = document.getElementById('inviteImageFront');
+        const inviteImageBack = document.getElementById('inviteImageBack');
         let flipped = false;
 
         // Speed up the last few seconds of the video
@@ -191,16 +204,27 @@
             const currentTime = introVideo.currentTime;
             // Speed up last 5 seconds
             if (duration - currentTime <= 2) {
-                introVideo.playbackRate = 1.5;  // Double the speed for last 5 seconds
+                introVideo.playbackRate = 1.5;  // Double the speed for last 2 seconds
             } else {
-                introVideo.playbackRate = 1.0;  // Normal speed
+                introVideo.playbackRate = 0.5;  // Normal speed
             }
         });
 
         // Once video ends, fade in the images
         introVideo.addEventListener('ended', function() {
             videoContainer.style.display = 'none';  // Hide video container
-            imageContainer.style.opacity = 1;  // Fade in images
+            
+            // Check for screen size and show the corresponding images
+            if (window.innerWidth <= 768) {
+                // For mobile: Show front and back images
+                inviteImageFront.style.opacity = 1;
+                inviteImageBack.style.opacity = 1;
+            } else {
+                // For web: Show the web-specific invite image
+                inviteImageWeb.style.opacity = 1;
+            }
+
+            imageContainer.style.opacity = 1;  // Fade in the image container
         });
 
         // Auto flip for mobile
@@ -225,6 +249,6 @@
         window.addEventListener('resize', autoFlipForMobile);
         window.addEventListener('load', autoFlipForMobile);
     </script>
-
+    
 </body>
 </html>
