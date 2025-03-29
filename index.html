@@ -19,20 +19,86 @@
             position: relative;
         }
 
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #F0F5FA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            border-bottom: 3px solid rgba(0, 0, 128, 0.3);
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .banner-image {
+            height: 50px;
+            width: auto;
+        }
+
+        @media (max-width: 768px) {
+            .banner-image {
+                display: none;
+            }
+        }
+
+        .buttons-container a {
+            font-family: "Sackers Gothic Medium", Arial, sans-serif;
+            padding: 12px 30px;
+            color: rgba(0, 0, 128, 0.9);
+            text-decoration: none;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .buttons-container a:hover {
+            box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4);
+            transform: scale(1.05);
+        }
+
         .invitation-container {
             width: 100%;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: auto;
             perspective: 1000px;
         }
 
         .flip-card {
-            width: 80%;
-            max-width: 600px;
-            height: 80vh;
-            position: relative;
+            width: 100%;
+            height: auto;
             transform-style: preserve-3d;
             transition: transform 1s;
         }
@@ -41,55 +107,53 @@
             transform: rotateY(180deg);
         }
 
-        .flip-card-inner {
+        .flip-card img {
             width: 100%;
-            height: 100%;
-            position: absolute;
             backface-visibility: hidden;
-        }
-
-        .front, .back {
-            width: 100%;
-            height: 100%;
             position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .back {
             transform: rotateY(180deg);
         }
-
-        .flip-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="buttons-container">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
+            <img src="static/hebrew_banner.png" alt="Hebrew Banner" class="banner-image">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
+        </div>
+    </div>
+
     <div class="invitation-container">
-        <div class="flip-card" id="flipCard">
-            <div class="flip-card-inner front">
-                <img id="inviteImageFront" src="static/Sam_Squared_Wedding_Invite.jpg" alt="Wedding Invitation">
-            </div>
-            <div class="flip-card-inner back">
-                <img id="inviteImageBack" src="static/hebrew_invite.jpg" alt="Hebrew Invitation">
+        <div class="image-container">
+            <div class="flip-card" id="flipCard">
+                <img id="frontImage" src="static/invite_test.jpg" alt="Wedding Invitation">
+                <img id="backImage" src="static/hebrew_invite.jpg" alt="Hebrew Invitation" class="back">
             </div>
         </div>
     </div>
 
     <script>
-        const flipCard = document.getElementById('flipCard');
-        let flipped = false;
+        function updateImageForMobile() {
+            if (window.innerWidth <= 768) {
+                document.getElementById('frontImage').src = 'static/Sam_Squared_Wedding_Invite.jpg';
+                setTimeout(() => {
+                    document.getElementById('flipCard').classList.add('flipped');
+                }, 10000);
+            }
+        }
 
-        setTimeout(() => {
-            flipCard.classList.add('flipped');
-            flipped = true;
-        }, 10000);
+        window.addEventListener('resize', updateImageForMobile);
+        updateImageForMobile();
 
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-                flipped = !flipped;
-                flipCard.classList.toggle('flipped', flipped);
+        document.addEventListener('keydown', function (event) {
+            if (window.innerWidth <= 768 && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) {
+                document.getElementById('flipCard').classList.toggle('flipped');
             }
         });
     </script>
