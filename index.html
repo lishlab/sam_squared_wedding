@@ -197,6 +197,11 @@
         const inviteImageFront = document.getElementById('inviteImageFront');
         const inviteImageBack = document.getElementById('inviteImageBack');
         let flipped = false;
+        
+        // Ensure the video plays once it is ready and only once.
+        window.addEventListener('load', function() {
+            introVideo.play();
+        });
 
         // Speed up the last few seconds of the video
         introVideo.addEventListener('timeupdate', function() {
