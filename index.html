@@ -17,6 +17,8 @@
             overflow: hidden;
             font-family: "Sackers Gothic Medium";
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
@@ -31,6 +33,7 @@
             align-items: center;
             z-index: 10;
             border-bottom: 3px solid rgba(0, 0, 128, 0.3);
+            height: 70px; /* Fixed height for header */
         }
 
         .buttons-container {
@@ -82,22 +85,21 @@
 
         .invitation-container {
             width: 100%;
-            height: 100vh;
+            height: calc(100vh - 70px);  /* Fill the rest of the screen minus the header */
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
             perspective: 1000px;
-            margin-top: 70px; /* Adjust for header height */
         }
 
         .video-container {
-            position: relative;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100%; /* Fill the video container to the full height */
             background: white;
             z-index: 5;
             display: flex;
