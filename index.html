@@ -147,12 +147,6 @@
     </style>
 </head>
 <body>
-    <div id="videoContainer">
-        <video id="introVideo" autoplay muted>
-            <source src="static/invite_test.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
 
     <div class="header">
         <div class="buttons-container">
@@ -163,6 +157,16 @@
     </div>
 
     <div class="invitation-container">
+        <div class="video-container">
+            <video id="introVideo" autoplay muted playsinline>
+                <source src="static/invite_test.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div class="image-container">
+            <img id="inviteImage" src="static/invite_test.jpg" alt="Wedding Invitation">
+        
         <div class="image-container" id="imageContainer">
             <img id="inviteImageFront" src="static/Sam_Squared_Wedding_Invite.jpg" alt="Wedding Invitation">
             <img id="inviteImageBack" src="static/hebrew_invite.jpg" alt="Hebrew Wedding Invitation" style="transform: rotateY(180deg);">
@@ -180,10 +184,10 @@
             const duration = introVideo.duration;
             const currentTime = introVideo.currentTime;
             // Speed up last 5 seconds
-            if (duration - currentTime <= 5) {
-                introVideo.playbackRate = 2;  // Double the speed for last 5 seconds
+            if (duration - currentTime <= 2) {
+                introVideo.playbackRate = 1.5;  // Double the speed for last 5 seconds
             } else {
-                introVideo.playbackRate = 1;  // Normal speed
+                introVideo.playbackRate = .5;  // Normal speed
             }
         });
 
