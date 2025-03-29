@@ -46,8 +46,8 @@
         }
 
         @media (max-width: 768px) {
-            .banner-image {
-                display: none;
+            .banner-image img {
+                display: 95vw; /* Adjust for smaller screens */
             }
         }
 
@@ -109,12 +109,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
         .image-container img {
             width: 100%;
-            height:100%;
-            object-fit: contain;
+            height: 100%;
+            object-fit: contain;  /* Ensures the image maintains its aspect ratio */
             backface-visibility: hidden;
             position: absolute;
             transition: opacity 0.5s ease-in-out;
@@ -123,9 +125,35 @@
         .flipped {
             transform: rotateY(180deg);
         }
+
+        #videoContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
+    <div id="videoContainer">
+        <video id="introVideo" autoplay muted>
+            <source src="static/intro_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
     <div class="header">
         <div class="buttons-container">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
@@ -142,8 +170,28 @@
     </div>
 
     <script>
+        const introVideo = document.getElementById('introVideo');
+        const videoContainer = document.getElementById('videoContainer');
         const imageContainer = document.getElementById('imageContainer');
         let flipped = false;
+
+        // Speed up the last few seconds of the video
+        introVideo.addEventListener('timeupdate', function() {
+            const duration = introVideo.duration;
+            const currentTime = introVideo.currentTime;
+            // Speed up last 5 seconds
+            if (duration - currentTime <= 5) {
+                introVideo.playbackRate = 2;  // Double the speed for last 5 seconds
+            } else {
+                introVideo.playbackRate = 1;  // Normal speed
+            }
+        });
+
+        // Once video ends, fade in the images
+        introVideo.addEventListener('ended', function() {
+            videoContainer.style.display = 'none';  // Hide video container
+            imageContainer.style.opacity = 1;  // Fade in images
+        });
 
         function autoFlipForMobile() {
             if (window.innerWidth <= 768) {
@@ -164,7 +212,7 @@
         });
 
         window.addEventListener('resize', autoFlipForMobile);
-        autoFlipForMobile();
+        window.addEventListener('load', autoFlipForMobile);
     </script>
 </body>
 </html>
