@@ -17,8 +17,6 @@
             overflow: hidden;
             font-family: "Sackers Gothic Medium";
             position: relative;
-            display: flex;
-            flex-direction: column;
         }
 
         .header {
@@ -33,7 +31,6 @@
             align-items: center;
             z-index: 10;
             border-bottom: 3px solid rgba(0, 0, 128, 0.3);
-            height: 70px; /* Fixed height for header */
         }
 
         .buttons-container {
@@ -41,7 +38,6 @@
             flex-direction: row;
             gap: 15px;
             align-items: center;
-            visibility: visible; /* Ensure it's immediately visible */
         }
 
         .banner-image {
@@ -49,18 +45,23 @@
             width: auto;
         }
 
+        @media (max-width: 768px) {
+            .banner-image {
+                display: none;
+            }
+        }
+
         .buttons-container a {
             font-family: "Sackers Gothic Medium", Arial, sans-serif;
             padding: 12px 30px;
             color: rgba(0, 0, 128, 0.9);
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             border: none;
             border-radius: 25px;
             text-align: center;
             background-size: cover;
-           /* background-size: 100% 100%; /* Stretch the image to cover the width, maintain the height proportion */
-            background-color: transparent; /* Make the background transparent to show image */
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -68,13 +69,26 @@
             height: 50px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             font-weight: bold;
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4);
             transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        
+        .buttons-container a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.6);
+            z-index: -1;
         }
 
         .buttons-container a:hover {
-            box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4); /* Enhance shadow on hover */
-            transform: scale(1.05); /* Slightly increase size on hover */
+            box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4);
+            transform: scale(1.05);
         }
 
         .rsvp-button {
@@ -87,188 +101,91 @@
 
         .invitation-container {
             width: 100%;
-            height: calc(100vh - 70px);  /* Fill the rest of the screen minus the header */
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            perspective: 1000px;
         }
 
-        .video-container {
+        .video-container, .image-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%; /* Fill the video container to the full height */
-            background: white;
-            z-index: 5;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        video {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        .image-container {
-            position: relative;
+        .video-container video {
             width: 100%;
             height: 100%;
-            opacity: 0;
+            object-fit: cover;
             transition: opacity 1s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .image-container img {
             width: 100%;
-            height: 100%;
+            max-width: 100%;
             object-fit: contain;
-            backface-visibility: hidden;
-            position: absolute;
-            opacity: 0; /* Ensure images are initially hidden */
-            transition: opacity 1s ease-in-out; /* Smooth fade-in effect */
-        }
-
-        #inviteImageWeb {
-            opacity: 0;  /* Make sure it starts hidden */
-        }
-
-        #inviteImageFront, #inviteImageBack {
-            opacity: 0;  /* Make sure they start hidden on mobile */
-        }
-        
-        .flipped {
-            transform: rotateY(180deg);
-        }
-        /* Media query to hide the Hebrew Banner on mobile devices */
-        @media (max-width: 768px) {
-            #hebrewBanner {
-                display: none;
-            }
-
-            #inviteImageWeb {
-                display: none;
-            }
-
-            #inviteImageFront, #inviteImageBack {
-                opacity: 1;
-            }
-        }
-
-        /* Show the Hebrew Banner only on web */
-        @media (min-width: 769px) {
-            #hebrewBanner {
-                display: block;
-            }
-
-            #inviteImageFront, #inviteImageBack {
-                display: none;
-            }
-
-            #inviteImageWeb {
-                opacity: 1;
-            }
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
     </style>
 </head>
 <body>
-
     <div class="header">
         <div class="buttons-container">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
-            <img src="static/hebrew_banner.png" alt="Hebrew Banner" class="banner-image" id="hebrewBanner">
+            <img src="static/hebrew_banner.png" alt="Hebrew Banner" class="banner-image">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
         </div>
     </div>
 
     <div class="invitation-container">
-        <!-- Video Container -->
         <div class="video-container">
             <video id="introVideo" autoplay muted playsinline>
                 <source src="static/invite_test.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
-
-        <!-- Image Container for Web -->
-        <div class="image-container" id="imageContainer">
-            <img id="inviteImageWeb" src="static/invite_test.jpg" alt="Wedding Invitation Web" class="web-image">
-            <img id="inviteImageFront" src="static/Sam_Squared_Wedding_Invite.jpg" alt="Wedding Invitation">
-            <img id="inviteImageBack" src="static/hebrew_invite.jpg" alt="Hebrew Wedding Invitation" style="transform: rotateY(180deg);">
+        <div class="image-container">
+            <img id="inviteImage" src="static/invite_test.jpg" alt="Wedding Invitation">
         </div>
     </div>
 
     <script>
-        const introVideo = document.getElementById('introVideo');
-        const videoContainer = document.getElementById('videoContainer');
-        const imageContainer = document.getElementById('imageContainer');
-        const inviteImageWeb = document.getElementById('inviteImageWeb');
-        const inviteImageFront = document.getElementById('inviteImageFront');
-        const inviteImageBack = document.getElementById('inviteImageBack');
-        let flipped = false;
-        
-        // Start the video once it's ready to play
-        introVideo.addEventListener('canplay', function() {
-            introVideo.play();  // Ensure it plays when ready
-        });
+        const video = document.getElementById('introVideo');
+        const inviteImage = document.getElementById('inviteImage');
 
-        // Speed up the last few seconds of the video
-        introVideo.addEventListener('timeupdate', function() {
-            const duration = introVideo.duration;
-            const currentTime = introVideo.currentTime;
-            
-            // Speed up last 5 seconds
-            if (duration - currentTime <= 2) {
-                introVideo.playbackRate = 1.5;  // Speed up the last 2 seconds
-            } else {
-                introVideo.playbackRate = .5;  // Normal speed
+        // Play video at half speed initially
+        video.playbackRate = 0.5;
+
+        // Increase speed at the last 3 seconds
+        video.addEventListener('timeupdate', function () {
+            if (video.duration - video.currentTime <= 3) {
+                video.playbackRate = 2.0;
             }
         });
 
-        // Once video ends, hide video and show images
-        introVideo.addEventListener('ended', function() {
-            videoContainer.style.display = 'none';  // Hide the video container
-
-            // Fade in images based on screen size
-            if (window.innerWidth <= 768) {
-                inviteImageFront.style.opacity = 1;
-                inviteImageBack.style.opacity = 1;
-            } else {
-                inviteImageWeb.style.opacity = 1;
-            }
-
-            imageContainer.style.opacity = 1;  // Fade in image container
+        video.addEventListener('ended', function() {
+            video.style.opacity = '0';  // Fade out video
+            inviteImage.style.opacity = '1'; // Fade in image
         });
 
-        // Auto flip for mobile
-        function autoFlipForMobile() {
+        function updateImageForMobile() {
             if (window.innerWidth <= 768) {
-                setTimeout(() => {
-                    imageContainer.classList.add('flipped');
-                    flipped = true;
-                }, 5000);
+                inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg';
+            } else {
+                inviteImage.src = 'static/invite_test.jpg';
             }
         }
 
-        imageContainer.addEventListener('click', () => {
-            flipped = !flipped;
-            if (flipped) {
-                imageContainer.classList.add('flipped');
-            } else {
-                imageContainer.classList.remove('flipped');
-            }
-        });
-
-        window.addEventListener('resize', autoFlipForMobile);
-        window.addEventListener('load', autoFlipForMobile);
+        window.addEventListener('resize', updateImageForMobile);
+        updateImageForMobile();
     </script>
-    
 </body>
 </html>
