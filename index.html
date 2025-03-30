@@ -82,11 +82,13 @@
         .rsvp-button {
             background-image: url('static/bubble2.png');
             background-size: 100% 100%; /* Stretch image to cover button */
+            background-color: transparent;
         }
 
         .hebrew-button {
             background-image: url('static/bubble3.png');
             background-size: 100% 100%; /* Stretch image to cover button */
+            background-color: transparent;
         }
 
         .invitation-container {
@@ -193,9 +195,13 @@
             }
         });
 
+        // Call the function immediately after the page loads
+        window.onload = function() {
+            updateImageForMobile();
+        };
+        
         // Call the function immediately to set the initial image
         window.addEventListener('resize', updateImageForMobile);
-        updateImageForMobile(); // Ensure the initial image is set when the page loads
     </script>
 </body>
 </html>
