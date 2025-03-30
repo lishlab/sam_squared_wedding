@@ -55,7 +55,8 @@
             border: none;
             border-radius: 25px;
             text-align: center;
-            background-size: cover;
+            /*background-size: cover;*/
+            background-size: 100% 100%;
             background-position: center;
             background-color: transparent;
             display: flex;
@@ -129,6 +130,12 @@
             object-fit: contain;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+        }
+        
+        @media (min-width: 769px) {
+            .banner-image {
+                display: block;
+            }
         }
     </style>
 </head>
