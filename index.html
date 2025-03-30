@@ -31,6 +31,15 @@
             align-items: center;
             z-index: 10;
             border-bottom: 3px solid rgba(0, 0, 128, 0.3);
+            visibility: hidden; /* Initially hidden */
+            opacity: 0; /* Ensure invisible initially */
+            transition: visibility 0s 0.5s, opacity 0.5s ease-in-out; /* Fade in after content is loaded */
+        }
+        
+        /* When the content has loaded */
+        body.loaded .header {
+            visibility: visible;
+            opacity: 1;
         }
 
         .buttons-container {
@@ -50,6 +59,7 @@
                 display: none;
             }
         }
+        
 
         .buttons-container a {
             font-family: "Sackers Gothic Medium", Arial, sans-serif;
@@ -60,7 +70,7 @@
             border: none;
             border-radius: 25px;
             text-align: center;
-            background-size: 100% 100%;
+            background-size: cover;
             background-position: center;
             background-color: transparent;
             display: flex;
@@ -81,13 +91,13 @@
 
         .rsvp-button {
             background-image: url('static/bubble2.png');
-            background-size: 100% 100%; /* Stretch image to cover button */
+            background-size: cover; /* Stretch image to cover button */
             background-color: transparent;
         }
 
         .hebrew-button {
             background-image: url('static/bubble5.png');
-            background-size: 100% 100%; /* Stretch image to cover button */
+            background-size: cover; /* Stretch image to cover button */
             background-color: transparent;
         }
 
@@ -159,6 +169,7 @@
         .back {
             transform: rotateY(180deg);
         }
+        
     </style>
 </head>
 <body>
@@ -184,6 +195,9 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            document.addEventListener("DOMContentLoaded", () => {
+                document.body.classList.add('loaded'); // Add 'loaded' class when everything is ready
+            });
             const video = document.getElementById("introVideo");
             const imageContainer = document.querySelector(".image-container");
 
