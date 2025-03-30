@@ -157,7 +157,7 @@
         // Play video at half speed initially
         video.playbackRate = 0.5;
 
-        // Increase speed at the last 3 seconds
+        // Increase speed at the last 2 seconds
         video.addEventListener('timeupdate', function () {
             if (video.duration - video.currentTime <= 2) {
                 video.playbackRate = 1.5;
@@ -169,9 +169,10 @@
             inviteImage.style.opacity = '1'; // Fade in image
         });
 
+        // Ensure image is set on page load for mobile
         function updateImageForMobile() {
             if (window.innerWidth <= 768) {
-                inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg'; // Set this image initially on mobile
+                inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg'; // Set this image immediately
                 flipCompleted = false; // Reset flip completed flag
                 
                 setTimeout(() => {
@@ -192,8 +193,9 @@
             }
         });
 
+        // Call the function immediately to set the initial image
         window.addEventListener('resize', updateImageForMobile);
-        updateImageForMobile();
+        updateImageForMobile(); // Ensure the initial image is set when the page loads
     </script>
 </body>
 </html>
