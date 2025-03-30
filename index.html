@@ -148,6 +148,9 @@
     </div>
 
     <script>
+        let flipCompleted = false;
+        let flipped = false;
+        
         const video = document.getElementById('introVideo');
         const inviteImage = document.getElementById('inviteImage');
 
@@ -168,20 +171,16 @@
 
         function updateImageForMobile() {
             if (window.innerWidth <= 768) {
-                inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg';
-                setTimeout(() => { inviteImage.src = 'static/hebrew_invite.jpg'; flipCompleted = true; }, 5000);
-            } else {
-                inviteImage.src = 'static/invite_test.jpg';
-            }
-        }
-        
-        // Auto flip for mobile after 5 seconds
-        function autoFlipForMobile() {
-            if (window.innerWidth <= 768) {
+                inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg'; // Set this image initially on mobile
+                flipCompleted = false; // Reset flip completed flag
+                
                 setTimeout(() => {
-                    inviteImage.src = 'static/hebrew_invite.jpg'; // Flip image after 5 seconds
+                    inviteImage.src = 'static/hebrew_invite.jpg'; // Switch to this image after 5 seconds
                     flipCompleted = true; // Mark flip as complete
                 }, 5000);
+            } else {
+                inviteImage.src = 'static/invite_test.jpg'; // Default image for desktop
+                flipCompleted = false; // Reset for desktop view
             }
         }
 
