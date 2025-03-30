@@ -40,7 +40,8 @@
             display: flex;
             flex-direction: row;
             gap: 15px;
-            /*align-items: center;*/
+            align-items: center;
+            visibility: visible; /* Ensure it's immediately visible */
         }
 
         .banner-image {
@@ -59,7 +60,6 @@
             text-align: center;
             background-size: cover;
            /* background-size: 100% 100%; /* Stretch the image to cover the width, maintain the height proportion */
-            background-position: center;
             background-color: transparent; /* Make the background transparent to show image */
             display: flex;
             align-items: center;
@@ -198,9 +198,11 @@
         const inviteImageBack = document.getElementById('inviteImageBack');
         let flipped = false;
         
-        // Ensure the video plays once it is ready and only once.
+        // Fix video autoplay and prevent multiple triggers
         window.addEventListener('load', function() {
-            introVideo.play();
+            if (!introVideo.playing) {
+                introVideo.play();  // Ensure video plays only once on load
+            }
         });
 
         // Speed up the last few seconds of the video
@@ -215,21 +217,21 @@
             }
         });
 
-        // Once video ends, fade in the images
         introVideo.addEventListener('ended', function() {
-            videoContainer.style.display = 'none';  // Hide video container
+            videoContainer.style.display = 'none';  // Hide video once it ends
             
-            // Check for screen size and show the corresponding images
-            if (window.innerWidth <= 768) {
-                // For mobile: Show front and back images
-                inviteImageFront.style.opacity = 1;
-                inviteImageBack.style.opacity = 1;
-            } else {
-                // For web: Show the web-specific invite image
-                inviteImageWeb.style.opacity = 1;
-            }
+            // Delay to ensure that images fade in after video ends
+            setTimeout(function() {
+                // Check for screen size and show the corresponding images
+                if (window.innerWidth <= 768) {
+                    inviteImageFront.style.opacity = 1;
+                    inviteImageBack.style.opacity = 1;
+                } else {
+                    inviteImageWeb.style.opacity = 1;
+                }
 
-            imageContainer.style.opacity = 1;  // Fade in the image container
+                imageContainer.style.opacity = 1;  // Fade in image container
+            }, 100);  // Delay before fading images
         });
 
         // Auto flip for mobile
