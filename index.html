@@ -152,12 +152,28 @@
             #hebrewBanner {
                 display: none;
             }
+
+            #inviteImageWeb {
+                display: none;
+            }
+
+            #inviteImageFront, #inviteImageBack {
+                opacity: 1;
+            }
         }
 
         /* Show the Hebrew Banner only on web */
         @media (min-width: 769px) {
             #hebrewBanner {
                 display: block;
+            }
+
+            #inviteImageFront, #inviteImageBack {
+                display: none;
+            }
+
+            #inviteImageWeb {
+                opacity: 1;
             }
         }
     </style>
