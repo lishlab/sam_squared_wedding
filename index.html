@@ -161,6 +161,8 @@
     <script>
         const video = document.getElementById('introVideo');
         const inviteImage = document.getElementById('inviteImage');
+        const hebrewBanner = document.querySelector('.banner-image'); // Reference the correct banner element
+        let flipped = false; // Track whether the image is flipped
 
         // Play video at half speed initially
         video.playbackRate = 0.5;
@@ -172,6 +174,12 @@
             }
         });
         
+
+        video.addEventListener('ended', function() {
+            video.style.opacity = '0';  // Fade out video
+            inviteImage.style.opacity = '1'; // Fade in image
+        });
+
         // Ensure Hebrew banner shows on desktop
         function updateBanner() {
             if (window.innerWidth > 768) {
@@ -180,12 +188,7 @@
                 hebrewBanner.style.display = 'none'; // Hide it for mobile
             }
         }
-
-        video.addEventListener('ended', function() {
-            video.style.opacity = '0';  // Fade out video
-            inviteImage.style.opacity = '1'; // Fade in image
-        });
-
+        
         function updateImageForMobile() {
             if (window.innerWidth <= 768) {
                 inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg';
@@ -198,22 +201,20 @@
         function autoFlipForMobile() {
             if (window.innerWidth <= 768) {
                 setTimeout(() => {
-                    imageContainer.classList.add('flipped');
                     flipped = true;
+                    inviteImage.src = 'static/hebrew_invite.jpg'; // Flip image after 5 seconds
                 }, 5000);
             }
         }
 
         // Toggle image between two options when clicked on mobile
-        imageContainer.addEventListener('click', () => {
+        document.querySelector('.image-container').addEventListener('click', () => {
             if (window.innerWidth <= 768) {
                 flipped = !flipped;
                 if (flipped) {
-                    imageContainer.classList.add('flipped');
-                    inviteImage.src = 'static/hebrew_invite.jpg';
+                    inviteImage.src = 'static/hebrew_invite.jpg'; // Show Hebrew invite
                 } else {
-                    imageContainer.classList.remove('flipped');
-                    inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg';
+                    inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg'; // Show original invite
                 }
             }
         });
