@@ -217,8 +217,14 @@
 
             video.addEventListener("ended", () => {
                 video.style.opacity = "0"; // Fade out video
-                imageContainer.style.opacity = "1"; // Fade in image container
-                flipContainer.style.opacity = "1"; // Ensure flip container is also visible
+
+                // Ensure image container and flip container are visible
+                imageContainer.style.opacity = "1";
+                flipContainer.style.opacity = "1";
+                
+                // Ensure images inside the flip container are also visible
+                frontImage.style.opacity = "1";
+                backImage.style.opacity = "1";
 
                 // Wait 5 seconds before flipping
                 setTimeout(() => {
