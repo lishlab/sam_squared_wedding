@@ -192,14 +192,15 @@
             flipContainer.classList.add("flip-container");
 
             // Front image (English invite)
-            const frontImage = document.createElement("img");
-            frontImage.src = "static/Sam_Squared_Wedding_Invite.jpg";
-            frontImage.classList.add("front");
+            const frontImage = new Image();
+            frontImage.src = "/static/Sam_Squared_Wedding_Invite.jpg";
+            frontImage.onload = () => console.log("Front image loaded successfully");
+            frontImage.onerror = () => console.error("Error loading front image");
 
-            // Back image (Hebrew invite)
-            const backImage = document.createElement("img");
-            backImage.src = "static/hebrew_invite.jpg";
-            backImage.classList.add("back");
+            const backImage = new Image();
+            backImage.src = "/static/hebrew_invite.jpg";
+            backImage.onload = () => console.log("Back image loaded successfully");
+            backImage.onerror = () => console.error("Error loading back image");
 
             flipContainer.appendChild(frontImage);
             flipContainer.appendChild(backImage);
