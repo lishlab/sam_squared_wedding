@@ -63,6 +63,7 @@
             text-align: center;
             background-size: cover;
             background-position: center;
+            background-color: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -201,7 +202,6 @@
         function autoFlipForMobile() {
             if (window.innerWidth <= 768) {
                 setTimeout(() => {
-                    flipped = true;
                     inviteImage.src = 'static/hebrew_invite.jpg'; // Flip image after 5 seconds
                 }, 5000);
             }
