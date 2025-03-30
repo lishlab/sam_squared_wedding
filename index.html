@@ -178,7 +178,7 @@
             </video>
         </div>
         <div class="image-container">
-            <img src="./static/invite_test.jpg" alt="Wedding Invitation">
+            <img src="https://lishlab.github.io/sam_squared_wedding/static/invite_test.jpg" alt="Wedding Invitation">
         </div>
     </div>
 
@@ -191,16 +191,11 @@
             const flipContainer = document.createElement("div");
             flipContainer.classList.add("flip-container");
 
-            // Front image (English invite)
-            const frontImage = new Image();
-            frontImage.src = "/static/Sam_Squared_Wedding_Invite.jpg";
-            frontImage.onload = () => console.log("Front image loaded successfully");
-            frontImage.onerror = () => console.error("Error loading front image");
+            const frontImage = document.createElement("img");
+            frontImage.src = "https://lishlab.github.io/sam_squared_wedding/static/Sam_Squared_Wedding_Invite.jpg";
 
-            const backImage = new Image();
-            backImage.src = "/static/hebrew_invite.jpg";
-            backImage.onload = () => console.log("Back image loaded successfully");
-            backImage.onerror = () => console.error("Error loading back image");
+            const backImage = document.createElement("img");
+            backImage.src = "https://lishlab.github.io/sam_squared_wedding/static/hebrew_invite.jpg";
 
             flipContainer.appendChild(frontImage);
             flipContainer.appendChild(backImage);
