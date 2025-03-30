@@ -86,7 +86,7 @@
         }
 
         .hebrew-button {
-            background-image: url('static/bubble3.png');
+            background-image: url('static/bubble5.png');
             background-size: 100% 100%; /* Stretch image to cover button */
             background-color: transparent;
         }
@@ -119,12 +119,45 @@
             transition: opacity 1s ease-in-out;
         }
 
-        .image-container img {
+        /*.image-container img {
             width: 100%;
             max-width: 100%;
             object-fit: contain;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+        }*/
+        
+        .image-container {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px; /* Enables 3D effect for flipping */
+        }
+        
+        .flip-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+        }
+
+        .flipped {
+            transform: rotateY(180deg);
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            backface-visibility: hidden;
+        }
+
+        .back {
+            transform: rotateY(180deg);
         }
     </style>
 </head>
@@ -150,58 +183,60 @@
     </div>
 
     <script>
-        let flipCompleted = false;
-        let flipped = false;
-        
-        const video = document.getElementById('introVideo');
-        const inviteImage = document.getElementById('inviteImage');
+        document.addEventListener("DOMContentLoaded", () => {
+            const video = document.getElementById("introVideo");
+            const imageContainer = document.querySelector(".image-container");
 
-        // Play video at half speed initially
-        video.playbackRate = 0.5;
+            // Create flip container
+            const flipContainer = document.createElement("div");
+            flipContainer.classList.add("flip-container");
 
-        // Increase speed at the last 2 seconds
-        video.addEventListener('timeupdate', function () {
-            if (video.duration - video.currentTime <= 2) {
-                video.playbackRate = 1.5;
-            }
-        });
+            // Front image (English invite)
+            const frontImage = document.createElement("img");
+            frontImage.src = "static/Sam_Squared_Wedding_Invite.jpg";
+            frontImage.classList.add("front");
 
-        video.addEventListener('ended', function() {
-            video.style.opacity = '0';  // Fade out video
-            inviteImage.style.opacity = '1'; // Fade in image
-        });
+            // Back image (Hebrew invite)
+            const backImage = document.createElement("img");
+            backImage.src = "static/hebrew_invite.jpg";
+            backImage.classList.add("back");
 
-        // Ensure image is set on page load for mobile
-        function updateImageForMobile() {
-            if (window.innerWidth <= 768) {
-                inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg'; // Set this image immediately
-                flipCompleted = false; // Reset flip completed flag
-                
+            flipContainer.appendChild(frontImage);
+            flipContainer.appendChild(backImage);
+            imageContainer.appendChild(flipContainer);
+
+            // Play video at half speed initially
+            video.playbackRate = 0.5;
+
+            // Increase speed at the last 2 seconds
+            video.addEventListener("timeupdate", () => {
+                if (video.duration - video.currentTime <= 2) {
+                    video.playbackRate = 1.5;
+                }
+            });
+
+            // When video ends, fade in image
+            video.addEventListener("ended", () => {
+                video.style.opacity = "0"; // Fade out video
+                imageContainer.style.opacity = "1"; // Fade in image
+
+                // Wait 5 seconds before flipping
                 setTimeout(() => {
-                    inviteImage.src = 'static/hebrew_invite.jpg'; // Switch to this image after 15 seconds
-                    flipCompleted = true; // Mark flip as complete
+                    flipContainer.classList.add("flipped");
                 }, 5000);
-            } else {
-                inviteImage.src = 'static/invite_test.jpg'; // Default image for desktop
-                flipCompleted = false; // Reset for desktop view
-            }
-        }
+            });
 
-        // Toggle image between two options when clicked on mobile, after the initial flip
-        document.querySelector('.image-container').addEventListener('click', () => {
-            if (window.innerWidth <= 768 && flipCompleted) {
+            // Enable manual flipping on click (after initial flip)
+            let flipped = false;
+            flipContainer.addEventListener("click", () => {
                 flipped = !flipped;
-                inviteImage.src = flipped ? 'static/hebrew_invite.jpg' : 'static/Sam_Squared_Wedding_Invite.jpg';
-            }
+                if (flipped) {
+                    flipContainer.classList.add("flipped");
+                } else {
+                    flipContainer.classList.remove("flipped");
+                }
+            });
         });
-
-        // Call the function immediately after the page loads
-        window.onload = function() {
-            updateImageForMobile();
-        };
-        
-        // Call the function immediately to set the initial image
-        window.addEventListener('resize', updateImageForMobile);
     </script>
 </body>
 </html>
