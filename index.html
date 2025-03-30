@@ -164,6 +164,7 @@
         const inviteImage = document.getElementById('inviteImage');
         const hebrewBanner = document.querySelector('.banner-image'); // Reference the correct banner element
         let flipped = false; // Track whether the image is flipped
+        let flipCompleted = false; // Track if the initial flip has completed
 
         // Play video at half speed initially
         video.playbackRate = 0.5;
@@ -190,6 +191,7 @@
             }
         }
         
+        // Function to update the image for mobile
         function updateImageForMobile() {
             if (window.innerWidth <= 768) {
                 inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg';
@@ -203,13 +205,14 @@
             if (window.innerWidth <= 768) {
                 setTimeout(() => {
                     inviteImage.src = 'static/hebrew_invite.jpg'; // Flip image after 5 seconds
+                    flipCompleted = true; // Mark flip as complete
                 }, 5000);
             }
         }
 
-        // Toggle image between two options when clicked on mobile
+        // Toggle image between two options when clicked on mobile, after the initial flip
         document.querySelector('.image-container').addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 768 && flipCompleted) {
                 flipped = !flipped;
                 if (flipped) {
                     inviteImage.src = 'static/hebrew_invite.jpg'; // Show Hebrew invite
@@ -219,8 +222,14 @@
             }
         });
 
-        window.addEventListener('resize', updateImageForMobile);
+        window.addEventListener('resize', () => {
+            updateImageForMobile();
+            updateBanner(); // Call updateBanner when the window is resized
+            
+        // Initial setup
         updateImageForMobile();
+        updateBanner(); // Ensure the correct display for the banner on load
+        autoFlipForMobile(); // Ensure flip happens for mobile on load
     </script>
 </body>
 </html>
