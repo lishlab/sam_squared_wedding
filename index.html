@@ -226,6 +226,10 @@
             updateImageForMobile();
             updateBanner(); // Call updateBanner when the window is resized
             
+        // Initial setup
+        updateImageForMobile();
+        updateBanner(); // Ensure the correct display for the banner on load
+        autoFlipForMobile(); // Ensure flip happens for mobile on load
     </script>
 </body>
 </html>
