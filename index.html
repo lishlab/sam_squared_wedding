@@ -167,10 +167,29 @@
         function updateImageForMobile() {
             if (window.innerWidth <= 768) {
                 inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg';
+                setTimeout(() => { inviteImage.src = 'static/hebrew_invite.jpg'; flipCompleted = true; }, 5000);
             } else {
                 inviteImage.src = 'static/invite_test.jpg';
             }
         }
+        
+        // Auto flip for mobile after 5 seconds
+        function autoFlipForMobile() {
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    inviteImage.src = 'static/hebrew_invite.jpg'; // Flip image after 5 seconds
+                    flipCompleted = true; // Mark flip as complete
+                }, 5000);
+            }
+        }
+
+        // Toggle image between two options when clicked on mobile, after the initial flip
+        document.querySelector('.image-container').addEventListener('click', () => {
+            if (window.innerWidth <= 768 && flipCompleted) {
+                flipped = !flipped;
+                inviteImage.src = flipped ? 'static/hebrew_invite.jpg' : 'static/Sam_Squared_Wedding_Invite.jpg';
+            }
+        });
 
         window.addEventListener('resize', updateImageForMobile);
         updateImageForMobile();
