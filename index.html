@@ -181,6 +181,14 @@
         video.addEventListener('ended', function() {
             video.style.opacity = '0';  // Fade out video
             inviteImage.style.opacity = '1'; // Fade in image
+
+            // Correctly update image based on screen size
+            if (window.innerWidth <= 768) {
+                inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg'; // Mobile image
+                autoFlipForMobile(); // Start auto-flip for mobile
+            } else {
+                inviteImage.src = 'static/invite_test.jpg'; // Desktop image
+            }
         });
 
         // Ensure Hebrew banner shows on desktop
@@ -192,14 +200,6 @@
             }
         }
         
-        // Function to update the image for mobile
-        function updateImageForMobile() {
-            if (window.innerWidth <= 768) {
-                inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg';
-            } else {
-                inviteImage.src = 'static/invite_test.jpg';
-            }
-        }
         
         // Auto flip for mobile after 5 seconds
         function autoFlipForMobile() {
