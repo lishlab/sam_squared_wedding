@@ -186,17 +186,13 @@
 
         // Ensure Hebrew banner shows on desktop
         function updateBanner() {
-            if (window.innerWidth > 768) {
-                hebrewBanner.style.display = 'block'; // Show the banner for desktop
-            } else {
-                hebrewBanner.style.display = 'none'; // Hide it for mobile
-            }
+            hebrewBanner.style.display = window.innerWidth > 768 ? 'block' : 'none';
         }
         
         function updateImageForMobile() {
             if (window.innerWidth <= 768) {
                 inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg';
-                autoFlipForMobile();
+                setTimeout(() => { inviteImage.src = 'static/hebrew_invite.jpg'; flipCompleted = true; }, 5000);
             } else {
                 inviteImage.src = 'static/invite_test.jpg';
             }
