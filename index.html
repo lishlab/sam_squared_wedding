@@ -43,6 +43,7 @@
         .banner-image {
             height: 50px;
             width: auto;
+            display: none; /* Initially hidden, shown by JS for desktop */
         }
 
         @media (max-width: 768px) {
@@ -164,12 +165,21 @@
         // Play video at half speed initially
         video.playbackRate = 0.5;
 
-        // Increase speed at the last 3 seconds
+        // Increase speed at the last 2 seconds
         video.addEventListener('timeupdate', function () {
-            if (video.duration - video.currentTime <= 3) {
+            if (video.duration - video.currentTime <= 2) {
                 video.playbackRate = 2.0;
             }
         });
+        
+        // Ensure Hebrew banner shows on desktop
+        function updateBanner() {
+            if (window.innerWidth > 768) {
+                hebrewBanner.style.display = 'block'; // Show the banner for desktop
+            } else {
+                hebrewBanner.style.display = 'none'; // Hide it for mobile
+            }
+        }
 
         video.addEventListener('ended', function() {
             video.style.opacity = '0';  // Fade out video
@@ -183,6 +193,30 @@
                 inviteImage.src = 'static/invite_test.jpg';
             }
         }
+        
+        // Auto flip for mobile after 5 seconds
+        function autoFlipForMobile() {
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    imageContainer.classList.add('flipped');
+                    flipped = true;
+                }, 5000);
+            }
+        }
+
+        // Toggle image between two options when clicked on mobile
+        imageContainer.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                flipped = !flipped;
+                if (flipped) {
+                    imageContainer.classList.add('flipped');
+                    inviteImage.src = 'static/hebrew_invite.jpg';
+                } else {
+                    imageContainer.classList.remove('flipped');
+                    inviteImage.src = 'static/Sam_Squared_Wedding_Invite.jpg';
+                }
+            }
+        });
 
         window.addEventListener('resize', updateImageForMobile);
         updateImageForMobile();
