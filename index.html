@@ -215,10 +215,10 @@
                 }
             });
 
-            // When video ends, fade in image
             video.addEventListener("ended", () => {
                 video.style.opacity = "0"; // Fade out video
-                imageContainer.style.opacity = "1"; // Fade in image
+                imageContainer.style.opacity = "1"; // Fade in image container
+                flipContainer.style.opacity = "1"; // Ensure flip container is also visible
 
                 // Wait 5 seconds before flipping
                 setTimeout(() => {
