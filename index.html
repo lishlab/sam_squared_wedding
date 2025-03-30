@@ -217,21 +217,16 @@
 
             video.addEventListener("ended", () => {
                 video.style.opacity = "0"; // Fade out video
-
-                // Ensure image container and flip container are visible
                 imageContainer.style.opacity = "1";
                 flipContainer.style.opacity = "1";
-                
-                // Ensure images inside the flip container are also visible
+
                 frontImage.style.opacity = "1";
                 backImage.style.opacity = "1";
-
-                // Wait 5 seconds before flipping
-                setTimeout(() => {
-                    flipContainer.classList.add("flipped");
-                }, 5000);
             });
 
+            frontImage.onload = () => console.log("Front image loaded");
+            backImage.onload = () => console.log("Back image loaded");
+            
             // Enable manual flipping on click (after initial flip)
             let flipped = false;
             flipContainer.addEventListener("click", () => {
