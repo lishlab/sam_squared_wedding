@@ -46,7 +46,7 @@
         .rsvp-button { background-image: url('static/bubble2.png'); }
         .hebrew-button { background-image: url('static/bubble5.png'); }
         .invitation-container { width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .video-container, .image-container { position: absolute; width: 100%; height: calc(100vh - 65px); display: flex; align-items: center; justify-content: center; }
+        .video-container, .image-container { position: absolute; width: 100%; height: calc(100vh - 75px); display: flex; align-items: center; justify-content: center; }
         .video-container video { width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; }
         .image-container img { width: 100%; max-width: 100%; object-fit: contain; opacity: 0; transition: opacity 1s; position: absolute; }
         .flip-container {
@@ -82,11 +82,18 @@
         @media (min-width: 769px) { .laptop-image { display: block; } }
         /* Mobile-specific fixes */
         @media (max-width: 768px) {
-            .image-container {
+            .video-container, .image-container {
                 position: relative; /* Change from absolute to relative */
                 height: auto; /* Let content define height */
-                top: 0; /* Remove offset */
-                margin-top: 10px; /* Add slight spacing if needed */
+                top: 0; /* Remove any offset */
+                margin-top: 10px; /* Adjust spacing if needed */
+            }
+
+            .image-container img {
+                position: relative; /* Ensure image is in normal flow */
+                width: 100%;
+                max-width: 100%;
+                display: block; /* Prevent unwanted spacing */
             }
         }
     </style>
