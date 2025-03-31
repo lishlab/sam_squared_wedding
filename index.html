@@ -27,7 +27,7 @@
             display: none; /* Hidden initially */
             position: relative;
             width: 100%;
-            max-width: 90%;
+            max-width: 100%;
             perspective: 1000px;
         }
         .flip-container img {
@@ -35,6 +35,14 @@
             position: absolute;
             backface-visibility: hidden;
             transition: opacity 1s, transform 0.6s;
+        }
+        .front {
+            transform: rotateY(0deg);
+        }
+
+        .back {
+            opacity: 0;
+            transform: rotateY(180deg);
         }
         .flipped .front {
             opacity: 0;
@@ -77,17 +85,16 @@
             const laptopImage = document.getElementById("laptopImage");
             const frontImage = document.getElementById("frontImage");
             const backImage = document.getElementById("backImage");
-            const flipContainer = document.getElementById("flipContainer");
+            const flipContainer = document.querySelector(".flip-container"); // Fix selection
 
-            // Initially hide the laptop image
-            laptopImage.style.opacity = "0";
-            frontImage.style.opacity = "0";
-            backImage.style.opacity = "0";
+            // Initially hide everything
+            laptopImage.style.display = "none";
+            frontImage.style.display = "none";
+            backImage.style.display = "none";
+            flipContainer.style.display = "none"; // Ensure flip-container is hidden at start
 
-            // Play video at half speed initially
             video.playbackRate = 0.5;
-            
-            // Increase speed at the last 2 seconds
+
             video.addEventListener("timeupdate", () => {
                 if (video.duration - video.currentTime <= 2) {
                     video.playbackRate = 1.5;
@@ -95,29 +102,28 @@
             });
 
             video.addEventListener("ended", () => {
-                video.style.opacity = "0"; // Fade out video
+                video.style.display = "none"; // Hide video
 
                 if (window.innerWidth > 768) {
-                    // Laptops: Show only invite_test.jpg
+                    // Desktop: Show only invite_test.jpg
+                    laptopImage.style.display = "block";
                     laptopImage.style.opacity = "1";
-                    frontImage.style.display = "none";
-                    backImage.style.display = "none";
                 } else {
-                    // Mobile: Show frontImage, allow flipping to backImage
+                    // Mobile: Show front image and allow flip
+                    flipContainer.style.display = "block"; // Show flip-container
+                    frontImage.style.display = "block";
                     frontImage.style.opacity = "1";
-                    backImage.style.opacity = "0";
-                    flipContainer.style.display = "block"; // Ensure flip container is visible
-                    
-                    // Flip to Hebrew invite after 5 seconds
+
                     setTimeout(() => {
                         flipContainer.classList.add("flipped");
+                        backImage.style.display = "block"; // Ensure backImage is shown
                         backImage.style.opacity = "1";
                     }, 5000);
                 }
             });
-            
-            // Allow manual flipping after auto flip
-            if (window.innerWidth <= 768 && flipContainer) {
+
+            // Enable manual flipping
+            if (window.innerWidth <= 768) {
                 flipContainer.addEventListener("click", () => {
                     flipContainer.classList.toggle("flipped");
                     backImage.style.opacity = flipContainer.classList.contains("flipped") ? "1" : "0";
