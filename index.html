@@ -91,8 +91,8 @@
             transform: translateX(-50%);
             width: auto;
             max-width: 100%;
-            height: calc(100vh - 70px); /* Ensure it fills remaining space */
-            object-fit: contain;
+            height: calc(100vh - 70px); /* Ensures full height usage */
+            object-fit: cover; /* Ensures the entire image fills available space */
         }
         @media (min-width: 768px) { .laptop-image { display: block; } }
         /* Mobile-specific fixes */
