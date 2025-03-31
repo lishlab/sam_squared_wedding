@@ -87,27 +87,30 @@
                 width: 100%;
                 height: auto;
                 display: flex;
-                justify-content: center; /* Center horizontally */
-                align-items: center; /* Center vertically */
+                justify-content: center; /* Centers images horizontally */
+                align-items: center; /* Centers images vertically */
             }
 
             .flip-container img {
-                position: absolute; /* Ensures front and back images overlap */
-                width: 90%; /* Prevents overflow */
+                position: absolute; /* Ensures both images overlap */
+                width: 90%;
                 max-width: 100%;
                 height: auto;
-                display: block;
                 left: 50%;
                 top: 50%;
-                transform: translate(-50%, -50%); /* Ensures proper centering */
+                transform: translate(-50%, -50%); /* Centers the images */
             }
 
-            /* Initially hide the back image */
+            /* Hide back image initially */
             .back {
                 opacity: 0;
+                position: absolute; /* Make sure it doesn't shift */
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
             }
 
-            /* When flipped, swap opacity */
+            /* Ensure proper flipping */
             .flipped .front {
                 opacity: 0;
             }
