@@ -81,6 +81,7 @@
         .laptop-image { display: none; }
         @media (min-width: 768px) { .laptop-image { display: block; } }
         /* Mobile-specific fixes */
+        /* Mobile-specific fixes */
         @media (max-width: 768px) {
             .flip-container {
                 position: relative;
@@ -93,30 +94,37 @@
 
             .flip-container img {
                 position: absolute; /* Ensures both images overlap */
-                width: 90%;
+                width: 90%; /* Adjust the width */
                 max-width: 100%;
                 height: auto;
                 left: 50%;
                 top: 50%;
-                transform: translate(-50%, -50%); /* Centers the images */
+                transform: translate(-50%, -50%); /* Centers both images */
+            }
+
+            /* Ensure both images are centered */
+            .front, .back {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%); /* Centers the image */
             }
 
             /* Hide back image initially */
             .back {
                 opacity: 0;
-                position: absolute; /* Make sure it doesn't shift */
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%) rotateY(180deg);
             }
 
-            /* Ensure proper flipping */
+            /* Show back image when flipped */
             .flipped .front {
                 opacity: 0;
+                transform: translate(-50%, -50%) rotateY(180deg);
             }
 
             .flipped .back {
                 opacity: 1;
+                transform: translate(-50%, -50%) rotateY(0deg);
             }
         }
     </style>
