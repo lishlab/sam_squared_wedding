@@ -14,7 +14,7 @@
         .buttons-container { display: flex; flex-direction: row; gap: 15px; align-items: center; }
         .banner-image { height: 50px; width: auto; }
         @media (max-width: 768px) { .banner-image { display: none; } }
-        .buttons-container a { padding: 5px 10px; color: rgba(0, 0, 128, 0.9); text-decoration: none; font-size: 18px; border: none; border-radius: 25px; text-align: center; background-size: 100% 100%; background-position: center; background-color: transparent; display: flex; align-items: center; justify-content: center; width: 150px; height: 50px; font-weight: bold; box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); transition: box-shadow 0.3s, transform 0.2s; }
+        .buttons-container a { padding: 4px 8px; color: rgba(0, 0, 128, 0.9); text-decoration: none; font-size: 18px; border: none; border-radius: 25px; text-align: center; background-size: 100% 100%; background-position: center; background-color: transparent; display: flex; align-items: center; justify-content: center; width: 150px; height: 50px; font-weight: bold; box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); transition: box-shadow 0.3s, transform 0.2s; }
         .buttons-container a:hover { box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4); transform: scale(1.05); }
         .rsvp-button { background-image: url('static/bubble2.png'); }
         .hebrew-button { background-image: url('static/bubble5.png'); }
@@ -63,7 +63,10 @@
             frontImage.style.opacity = "0";
             backImage.style.opacity = "0";
 
+            // Play video at half speed initially
             video.playbackRate = 0.5;
+            
+            // Increase speed at the last 2 seconds
             video.addEventListener("timeupdate", () => {
                 if (video.duration - video.currentTime <= 2) {
                     video.playbackRate = 1.5;
@@ -71,7 +74,7 @@
             });
 
             video.addEventListener("ended", () => {
-                video.style.opacity = "0"; // Hide video
+                video.style.opacity = "0"; // Fade out video
 
                 if (window.innerWidth > 768) {
                     // Laptops: Show only invite_test.jpg
@@ -83,9 +86,16 @@
                     frontImage.style.opacity = "1";
                     backImage.style.opacity = "0";
                     flipContainer.style.display = "block"; // Ensure flip container is visible
+                    
+                    // Flip to Hebrew invite after 5 seconds
+                    setTimeout(() => {
+                        flipContainer.classList.add("flipped");
+                        backImage.style.opacity = "1";
+                    }, 5000);
                 }
             });
-
+            
+            // Allow manual flipping after auto flip
             if (window.innerWidth <= 768 && flipContainer) {
                 flipContainer.addEventListener("click", () => {
                     flipContainer.classList.toggle("flipped");
