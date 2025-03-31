@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
     
-    <!-- Preload images to avoid flash on load -->
-    <link rel="preload" href="static/bubble2.png" as="image">
-    <link rel="preload" href="static/bubble5.png" as="image">
-    <link rel="preload" href="static/hebrew_banner.png" as="image">
-    
     <style>
         * {
             margin: 0;
@@ -22,11 +17,9 @@
             height: 100%;
             overflow: hidden;
             font-family: "Sackers Gothic Medium";
-            position: relative;
-            background-color: #F0F5FA; /* Ensure body has a consistent background color */
+            background-color: #F0F5FA;
         }
 
-        /* Ensure header is always visible immediately */
         .header {
             position: fixed;
             top: 0;
@@ -57,46 +50,6 @@
             .banner-image {
                 display: none;
             }
-        }
-
-        .buttons-container a {
-            font-family: "Sackers Gothic Medium", Arial, sans-serif;
-            padding: 6px 15px; /* Smaller padding */
-            color: rgba(0, 0, 128, 0.9);
-            text-decoration: none;
-            font-size: 18px;
-            border: none;
-            border-radius: 25px;
-            text-align: center;
-            background-size: 100% 100%;
-            background-position: center;
-            background-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 150px;
-            height: 50px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-weight: bold;
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-            transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
-        }
-
-        .buttons-container a:hover {
-            box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4);
-            transform: scale(1.05);
-        }
-
-        .rsvp-button {
-            background-image: url('static/bubble2.png');
-            background-size: 100% 100%; /* Stretch image to cover button */
-            background-color: transparent;
-        }
-
-        .hebrew-button {
-            background-image: url('static/bubble5.png');
-            background-size: 100% 100%; /* Stretch image to cover button */
-            background-color: transparent;
         }
 
         .invitation-container {
@@ -135,20 +88,9 @@
             transition: opacity 1s ease-in-out;
         }
 
-        .image-container {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            perspective: 1000px; /* Enables 3D effect for flipping */
-        }
-
         .flip-container {
             position: relative;
             width: 100%;
-            max-width: 100%;
             height: auto;
             transform-style: preserve-3d;
             transition: transform 1s ease-in-out;
@@ -167,15 +109,14 @@
         .back {
             transform: rotateY(180deg);
         }
-
     </style>
 </head>
 <body>
     <div class="header">
         <div class="buttons-container">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
+            <a href="#" class="rsvp-button">RSVP</a>
             <img src="static/hebrew_banner.png" alt="Hebrew Banner" class="banner-image">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
+            <a href="#" class="hebrew-button">הגיב להזמנה</a>
         </div>
     </div>
 
@@ -183,23 +124,24 @@
         <div class="video-container">
             <video id="introVideo" autoplay muted playsinline>
                 <source src="static/invite_test.mp4" type="video/mp4">
-                Your browser does not support the video tag.
             </video>
         </div>
         <div class="image-container">
-            <img src="https://lishlab.github.io/sam_squared_wedding/static/invite_test.jpg" alt="Wedding Invitation">
+            <div class="flip-container">
+                <img id="frontImage" src="static/invite_test.jpg" class="front" alt="Invitation Front">
+                <img id="backImage" src="static/hebrew_invite.jpg" class="back" alt="Invitation Back">
+            </div>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const video = document.getElementById("introVideo");
-            const imageContainer = document.querySelector(".image-container");
-
-            // Play video at half speed initially
+            const frontImage = document.getElementById("frontImage");
+            const backImage = document.getElementById("backImage");
+            const flipContainer = document.querySelector(".flip-container");
+            
             video.playbackRate = 0.5;
-
-            // Increase speed at the last 2 seconds
             video.addEventListener("timeupdate", () => {
                 if (video.duration - video.currentTime <= 2) {
                     video.playbackRate = 1.5;
@@ -207,9 +149,21 @@
             });
 
             video.addEventListener("ended", () => {
-                video.style.opacity = "0"; // Fade out video
-                imageContainer.style.opacity = "1";
+                video.style.opacity = "0";
+                frontImage.style.opacity = "1";
+                
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => {
+                        flipContainer.classList.toggle("flipped");
+                    }, 5000);
+                }
             });
+
+            if (window.innerWidth <= 768) {
+                flipContainer.addEventListener("click", () => {
+                    flipContainer.classList.toggle("flipped");
+                });
+            }
         });
     </script>
 </body>
