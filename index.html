@@ -82,16 +82,6 @@
         @media (min-width: 768px) { .laptop-image { display: block; } }
         /* Mobile-specific fixes */
         @media (max-width: 768px) {
-            .image-container {
-                position: relative; /* Ensures images stay within normal document flow */
-                height: auto; /* Allows natural height */
-                display: flex;
-                flex-direction: column;
-                align-items: center; /* Centers images */
-                justify-content: center;
-                padding-top: 20px; /* Adjust spacing if needed */
-            }
-
             .flip-container {
                 position: relative;
                 width: 100%;
@@ -100,12 +90,29 @@
                 align-items: center;
             }
 
-            .image-container img,
             .flip-container img {
-                position: relative; /* Fix absolute positioning issue */
-                width: 90%; /* Adjust width to prevent overflow */
+                position: absolute; /* Ensures both images stay stacked */
+                width: 90%;
                 max-width: 100%;
                 display: block;
+                transition: opacity 1s ease-in-out;
+            }
+
+            .front, .back {
+                top: 0;
+                left: 0;
+            }
+
+            .back {
+                opacity: 0; /* Initially hidden */
+            }
+
+            .flipped .front {
+                opacity: 0;
+            }
+
+            .flipped .back {
+                opacity: 1;
             }
         }
     </style>
