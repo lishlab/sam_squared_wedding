@@ -48,9 +48,18 @@
         .hebrew-button { background-image: url('static/bubble5.png'); }
         /* Make the bubble images overfill slightly */
         .rsvp-button, .hebrew-button {
-            background-size: cover; /* Ensures full coverage */
-            background-position: center; /* Keeps focus centered */
-            transform: scale(1.5); /* Zoom in by 1.5x */
+            position: relative; /* Required for absolute positioning */
+            overflow: hidden; /* Prevents overflow */
+        }
+
+        .rsvp-button::before, .hebrew-button::before {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%; /* Enlarges background */
+            background-image: inherit;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
         }
         .invitation-container { width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .video-container, .image-container { position: absolute; width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; }
