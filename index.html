@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
+    
+    <!-- Preload images to avoid flash on load -->
     <link rel="preload" href="static/bubble2.png" as="image">
     <link rel="preload" href="static/bubble5.png" as="image">
     <link rel="preload" href="static/hebrew_banner.png" as="image">
+    
     <style>
         * {
             margin: 0;
@@ -22,7 +25,7 @@
             position: relative;
         }
 
-        /* Ensure header is visible immediately */
+        /* Ensure header is always visible immediately */
         .header {
             position: fixed;
             top: 0;
@@ -35,8 +38,7 @@
             align-items: center;
             z-index: 10;
             border-bottom: 3px solid rgba(0, 0, 128, 0.3);
-            visibility: visible; /* Always visible */
-            opacity: 1; /* No opacity transition needed */
+            visibility: visible; /* Always visible, no flashing */
         }
 
         .buttons-container {
