@@ -46,16 +46,31 @@
         }
         .rsvp-button { background-image: url('static/bubble1.png'); }
         .hebrew-button { background-image: url('static/bubble5.png'); }
-        /* Make the bubble images overfill slightly */
+
+        /* General button styles */
         .rsvp-button, .hebrew-button {
             position: relative; /* Required for absolute positioning */
             overflow: hidden; /* Prevents overflow */
         }
 
-        .rsvp-button::before, .hebrew-button::before {
+        /* RSVP Button Background */
+        .rsvp-button::before {
             content: "";
             position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%; /* Enlarges background */
+            top: -50%; left: -50%;
+            width: 200%; height: 200%; /* Moderate enlargement */
+            background-image: inherit;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        /* Hebrew Button Background (Larger) */
+        .hebrew-button::before {
+            content: "";
+            position: absolute;
+            top: -60%; left: -60%;  /* Adjusts position if needed */
+            width: 250%; height: 250%; /* Larger enlargement */
             background-image: inherit;
             background-size: cover;
             background-position: center;
