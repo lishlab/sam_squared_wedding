@@ -14,19 +14,13 @@
         .buttons-container { display: flex; flex-direction: row; gap: 15px; align-items: center; }
         .banner-image { height: 50px; width: auto; }
         @media (max-width: 768px) { .banner-image { display: none; } }
-        .buttons-container a { padding: 5px 10px; color: rgba(0, 0, 128, 0.9); text-decoration: none; font-size: 18px; border: none; border-radius: 25px; text-align: center; background-size: 100% 100%; background-position: center; background-color: transparent; display: flex; align-items: center; justify-content: center; width: 150px; height: 50px; font-weight: bold; box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); transition: box-shadow 0.3s, transform 0.2s; }
-        .buttons-container a:hover { box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4); transform: scale(1.05); }
-        .rsvp-button { background-image: url('static/bubble2.png'); }
-        .hebrew-button { background-image: url('static/bubble5.png'); }
-        .invitation-container { width: 100%; height: calc(100vh - 70px);  display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .video-container, .image-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .invitation-container { width: 100%; height: calc(100vh - 70px); margin-top: 70px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .video-container, .image-container { position: absolute; top: 70px; left: 0; width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; }
         .video-container video { width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; }
-        .image-container { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        .image-container img { width: 100%; max-width: 100%; object-fit: contain; opacity: 0; transition: opacity 1s; position: absolute; top: 0; }
-        .flip-container { position: relative; width: 100%; max-width: 90%; height: auto; transform-style: preserve-3d; transition: transform 1s; display: flex; align-items: center; justify-content: center; }
-        .flipped { transform: rotateY(180deg); }
-        .front, .back { position: absolute; width: 100%; backface-visibility: hidden; }
-        .back { transform: rotateY(180deg); }
+        .image-container img { width: 100%; max-width: 90%; object-fit: contain; opacity: 0; transition: opacity 1s; position: absolute; }
+        .flip-container { display: none; }
+        .laptop-image { display: none; }
+        @media (min-width: 769px) { .laptop-image { display: block; } }
     </style>
 </head>
 <body>
@@ -45,18 +39,13 @@
             </video>
         </div>
         <div class="image-container">
-            <div class="flip-container" id="flipContainer">
-                <img id="frontImage" class="front" src="static/Sam_Squared_Wedding_Invite.jpg" alt="Wedding Invitation">
-                <img id="backImage" class="back" src="static/hebrew_invite.jpg" alt="Hebrew Invitation">
-            </div>
+            <img id="laptopImage" class="laptop-image" src="static/invite_test.jpg" alt="Wedding Invitation">
         </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const video = document.getElementById("introVideo");
-            const frontImage = document.getElementById("frontImage");
-            const backImage = document.getElementById("backImage");
-            const flipContainer = document.getElementById("flipContainer");
+            const laptopImage = document.getElementById("laptopImage");
            
             video.playbackRate = 0.5;
             video.addEventListener("timeupdate", () => {
@@ -66,25 +55,8 @@
             });
             video.addEventListener("ended", () => {
                 video.style.opacity = "0";
-                frontImage.style.opacity = "1";
-                if (window.innerWidth <= 768) {
-                    setTimeout(() => {
-                        flipContainer.classList.add("flipped");
-                        backImage.style.opacity = "1";
-                    }, 5000);
-                }
+                laptopImage.style.opacity = "1";
             });
-           
-            if (window.innerWidth <= 768) {
-                flipContainer.addEventListener("click", () => {
-                    flipContainer.classList.toggle("flipped");
-                    if (flipContainer.classList.contains("flipped")) {
-                        backImage.style.opacity = "1";
-                    } else {
-                        backImage.style.opacity = "0";
-                    }
-                });
-            }
         });
     </script>
 </body>
