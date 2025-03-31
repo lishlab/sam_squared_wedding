@@ -150,12 +150,17 @@
 
             video.addEventListener("ended", () => {
                 video.style.opacity = "0";
-                frontImage.style.opacity = "1";
                 
                 if (window.innerWidth <= 768) {
+                    frontImage.src = "static/Sam_Squared_Wedding_Invite.jpg";
+                    frontImage.style.opacity = "1";
+                    
                     setTimeout(() => {
                         flipContainer.classList.toggle("flipped");
                     }, 5000);
+                } else {
+                    frontImage.src = "static/invite_test.jpg";
+                    frontImage.style.opacity = "1";
                 }
             });
 
