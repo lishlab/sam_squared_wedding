@@ -14,7 +14,11 @@
         .buttons-container { display: flex; flex-direction: row; gap: 15px; align-items: center; }
         .banner-image { height: 50px; width: auto; }
         @media (max-width: 768px) { .banner-image { display: none; } }
-        .invitation-container { width: 100%; height: calc(100vh - 70px); margin-top: 70px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .buttons-container a { padding: 5px 10px; color: rgba(0, 0, 128, 0.9); text-decoration: none; font-size: 18px; border: none; border-radius: 25px; text-align: center; background-size: 100% 100%; background-position: center; background-color: transparent; display: flex; align-items: center; justify-content: center; width: 150px; height: 50px; font-weight: bold; box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); transition: box-shadow 0.3s, transform 0.2s; }
+        .buttons-container a:hover { box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4); transform: scale(1.05); }
+        .rsvp-button { background-image: url('static/bubble2.png'); }
+        .hebrew-button { background-image: url('static/bubble5.png'); }
+        .invitation-container { width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .video-container, .image-container { position: absolute; top: 70px; left: 0; width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; }
         .video-container video { width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; }
         .image-container img { width: 100%; max-width: 90%; object-fit: contain; opacity: 0; transition: opacity 1s; position: absolute; }
@@ -40,23 +44,54 @@
         </div>
         <div class="image-container">
             <img id="laptopImage" class="laptop-image" src="static/invite_test.jpg" alt="Wedding Invitation">
+            <div class="flip-container">
+                <img id="frontImage" class="front" src="static/Sam_Squared_Wedding_Invite.jpg" alt="Wedding Invitation">
+                <img id="backImage" class="back" src="static/hebrew_invite.jpg" alt="Hebrew Invitation">
+            </div>
         </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const video = document.getElementById("introVideo");
             const laptopImage = document.getElementById("laptopImage");
-           
+            const frontImage = document.getElementById("frontImage");
+            const backImage = document.getElementById("backImage");
+            const flipContainer = document.getElementById("flipContainer");
+
+            // Initially hide the laptop image
+            laptopImage.style.opacity = "0";
+            frontImage.style.opacity = "0";
+            backImage.style.opacity = "0";
+
             video.playbackRate = 0.5;
             video.addEventListener("timeupdate", () => {
                 if (video.duration - video.currentTime <= 2) {
                     video.playbackRate = 1.5;
                 }
             });
+
             video.addEventListener("ended", () => {
-                video.style.opacity = "0";
-                laptopImage.style.opacity = "1";
+                video.style.opacity = "0"; // Hide video
+
+                if (window.innerWidth > 768) {
+                    // Laptops: Show only invite_test.jpg
+                    laptopImage.style.opacity = "1";
+                    frontImage.style.display = "none";
+                    backImage.style.display = "none";
+                } else {
+                    // Mobile: Show frontImage, allow flipping to backImage
+                    frontImage.style.opacity = "1";
+                    backImage.style.opacity = "0";
+                    flipContainer.style.display = "block"; // Ensure flip container is visible
+                }
             });
+
+            if (window.innerWidth <= 768 && flipContainer) {
+                flipContainer.addEventListener("click", () => {
+                    flipContainer.classList.toggle("flipped");
+                    backImage.style.opacity = flipContainer.classList.contains("flipped") ? "1" : "0";
+                });
+            }
         });
     </script>
 </body>
