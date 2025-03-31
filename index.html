@@ -79,7 +79,7 @@
             transform: rotateY(0deg);
         }
         .laptop-image { display: none; }
-        @media (min-width: 769px) { .laptop-image { display: block; } }
+        @media (min-width: 768px) { .laptop-image { display: block; } }
         /* Mobile-specific fixes */
         @media (max-width: 768px) {
             .image-container {
@@ -90,10 +90,16 @@
             }
 
             .image-container img {
+            .flip-container img { /* Apply styles to both front and back images */
                 position: relative; /* Ensure image is in normal flow */
                 width: 100%;
                 max-width: 100%;
                 display: block; /* Prevent unwanted spacing */
+            }
+            .flip-container {
+                position: relative; /* Ensure it's properly aligned */
+                display: block; /* Ensure it appears */
+                text-align: center; /* Center align the images */
             }
         }
     </style>
