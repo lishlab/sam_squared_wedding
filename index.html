@@ -11,12 +11,38 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { width: 100%; height: 100%; overflow: hidden; font-family: "Sackers Gothic Medium"; background-color: #F0F5FA; }
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 10px 20px; background-color: #F0F5FA; display: flex; justify-content: center; align-items: center; z-index: 10; border-bottom: 2px solid rgba(0, 0, 128, 0.3);}
-        .buttons-container { display: flex; flex-direction: row; gap: 15px; align-items: center; background: rgba(255, 255, 255, 0.1); /* Makes only the background light */position: relative; z-index: 0; /* Ensures it's behind buttons */}
+        .buttons-container {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            align-items: center;
+        }
         .banner-image { height: 50px; width: auto; }
         @media (max-width: 768px) { .banner-image { display: none; } }
         .banner-image { height: 50px; width: auto; }
         @media (max-width: 768px) { .banner-image { display: none; } }
-        .buttons-container a {padding: 2px 2px; color: rgba(0, 0, 128, 0.9); text-decoration: none; font-size: 18px; border: none; border-radius: 25px; text-align: center; background-size: 100% 100%; background-position: center; opacity: 1, background:none; display: flex; align-items: center; justify-content: center; width: 150px; height: 50px; font-weight: bold; box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); transition: box-shadow 0.3s, transform 0.2s; z-index: 1;}
+        .buttons-container a {
+            font-family: "Sackers Gothic Medium", Arial, sans-serif;
+            padding: 6px 15px; /* Smaller padding */
+            color: rgba(0, 0, 128, 0.9);
+            text-decoration: none;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            text-align: center;
+            background-size: 100% 100%;
+            background-position: center;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
         .rsvp-button { background-image: url('static/bubble2.png'); }
         .hebrew-button { background-image: url('static/bubble5.png'); }
         .invitation-container { width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
