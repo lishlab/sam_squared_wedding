@@ -59,11 +59,22 @@
             content: "";
             position: absolute;
             top: -25%; left: -40%;
-            width: 125%; height: 125%; /* Moderate enlargement */
+            width: 150%; height: 150%; /* Moderate enlargement */
             background-image: inherit;
             background-size: cover;
             background-position: center;
             z-index: 0;
+        }
+        .button-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(0, 0, 128, 0.9);
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
 
         /* Hebrew Button Background (Larger) */
@@ -174,7 +185,9 @@
 <body>
     <div class="header">
         <div class="buttons-container">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">RSVP</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">
+                <span class="button-text">RSVP</span>
+            </a>
             <img src="static/hebrew_banner.png" alt="Hebrew Banner" class="banner-image">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5SfNl1FFqX782x_ECEgavizymnkP60jQSWcVLvBECvIUbHw/viewform" target="_blank" class="hebrew-button">הגיב להזמנה</a>
         </div>
