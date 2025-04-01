@@ -51,14 +51,15 @@
         .rsvp-button, .hebrew-button {
             position: relative; /* Required for absolute positioning */
             overflow: hidden; /* Prevents overflow */
+            z-index: 1; /* Keeps text above background */
         }
 
         /* RSVP Button Background */
         .rsvp-button::before {
             content: "";
             position: absolute;
-            top: -25%; left: -40%;
-            width: 160%; height: 160%; /* Moderate enlargement */
+            top: -20%; left: -40%;
+            width: 150%; height: 150%; /* Moderate enlargement */
             background-image: inherit;
             background-size: cover;
             background-position: center;
