@@ -135,7 +135,7 @@
             object-fit: contain; /* Ensures the entire image fills available space */
         }
         @media (min-width: 768px) { .laptop-image { display: block; } }
-        /* Mobile-specific fixes */
+
         /* Mobile-specific fixes */
         @media (max-width: 768px) {
             .flip-container {
@@ -157,7 +157,29 @@
                 transform: translate(-50%, -50%); /* Centers both images */
             }
 
-            /* Ensure both images are centered */
+            
+            /* Peeling effect */
+            .flip-container.peel .front {
+                clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+                opacity: 1;
+            }
+
+            .flip-container.peel .back {
+                opacity: 1;
+                z-index: -1;
+            }
+
+            .front {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                z-index: 2;
+            }
+
+            .back {
+                z-index: 1;
+                opacity: 0;
+            }
+            
+            /* Ensure both images are centered
             .front, .back {
                 position: absolute;
                 left: 50%;
@@ -166,13 +188,13 @@
             }
 
             /* Hide back image initially */
-            .back {
+            /*.back {
                 opacity: 0;
                 transform: translate(-50%, -50%) rotateY(180deg);
             }
 
             /* Show back image when flipped */
-            .flipped .front {
+            /*.flipped .front {
                 opacity: 0;
                 transform: translate(-50%, -50%) rotateY(180deg);
             }
@@ -180,7 +202,7 @@
             .flipped .back {
                 opacity: 1;
                 transform: translate(-50%, -50%) rotateY(0deg);
-            }
+            }*/
         }
     </style>
 </head>
@@ -245,7 +267,8 @@
                     frontImage.style.opacity = "1";
 
                     setTimeout(() => {
-                        flipContainer.classList.add("flipped");
+                        /*flipContainer.classList.add("flipped");*/
+                        flipContainer.classList.add("peel");
                         backImage.style.display = "block"; // Ensure backImage is shown
                         backImage.style.opacity = "1";
                     }, 4500); /*flips after 4.5 seconds*/
