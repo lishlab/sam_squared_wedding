@@ -302,16 +302,16 @@
                     // Switching to Hebrew side
                     toggleLanguageButton.classList.remove("english-return");
                     toggleLanguageButton.classList.add("hebrew-return");
-                    toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')";
-                    // Force reflow to apply the changes immediately
-                    toggleLanguageButton.offsetHeight; // Trigger reflow
+                    setTimeout(() => {
+                        toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')";
+                    }, 10); // Apply after a small delay to ensure smooth transition
                 } else {
                     // Switching to English side
                     toggleLanguageButton.classList.remove("hebrew-return");
                     toggleLanguageButton.classList.add("english-return");
-                    toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')";
-                    // Force reflow to apply the changes immediately
-                    toggleLanguageButton.offsetHeight; // Trigger reflow
+                    setTimeout(() => {
+                        toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')";
+                    }, 10); // Apply after a small delay to ensure smooth transition
                 }
 
             });
