@@ -158,15 +158,36 @@
             }
 
             
-            /* Peeling effect */
-            .flip-container.peel .front {
-                clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
-                opacity: 1;
-            }
+            /* Mobile-specific peeling effect */
+            @media (max-width: 768px) {
+                .flip-container.peel .front {
+                    animation: peelAway 2.5s ease-in-out forwards;
+                    z-index: 2;
+                }
 
-            .flip-container.peel .back {
-                opacity: 1;
-                z-index: -1;
+                .flip-container.peel .back {
+                    opacity: 1;
+                    z-index: 1;
+                }
+
+                @keyframes peelAway {
+                    0% {
+                        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                        transform: rotate(0deg);
+                        opacity: 1;
+                    }
+                    30% {
+                        clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+                    }
+                    60% {
+                        transform: rotateX(15deg) rotateZ(-5deg);
+                    }
+                    100% {
+                        clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+                        transform: rotateX(90deg) rotateZ(-10deg) translateY(-50%);
+                        opacity: 0;
+                    }
+                }
             }
 
 
