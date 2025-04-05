@@ -308,8 +308,9 @@
                     toggleLanguageButton.classList.add("english-return");
                     toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')"; // Set English return image
                 }
-                // Ensure background image updates correctly after every toggle
-                    toggleLanguageButton.style.transition = "background-image 0.5s ease-in-out"; // Smooth transition effect
+                // Force reflow to apply the changes immediately (fixes background not updating properly)
+                toggleLanguageButton.offsetHeight; // This triggers a reflow
+                toggleLanguageButton.style.transition = "background-image 0.5s ease-in-out"; // Smooth transition effect
             });
 
             // Enable manual flipping
