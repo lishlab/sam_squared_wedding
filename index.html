@@ -234,14 +234,15 @@
             const frontImage = document.getElementById("frontImage");
             const backImage = document.getElementById("backImage");
             const flipContainer = document.querySelector(".flip-container"); // Fix selection
-            const englishReturnButton = document.querySelector(".english-return");
-            const hebrewReturnButton = document.querySelector(".hebrew-return");
+            const toggleLanguageButton = document.getElementById("toggleLanguageButton");
 
             // Initially hide everything
             laptopImage.style.display = "none";
             frontImage.style.display = "none";
             backImage.style.display = "none";
             flipContainer.style.display = "none"; // Ensure flip-container is hidden at start
+            toggleLanguageButton.style.display = "none"; // Ensure button is hidden at start
+
 
             video.playbackRate = 0.5;
 
@@ -268,6 +269,8 @@
                         flipContainer.classList.add("flipped");
                         backImage.style.display = "block"; // Ensure backImage is shown
                         backImage.style.opacity = "1";
+                        // Show the return button after flip
+                        toggleLanguageButton.style.display = "block";
                     }, 4500); /*flips after 4.5 seconds*/
                 }
             });
@@ -292,6 +295,8 @@
                 flipContainer.addEventListener("click", () => {
                     flipContainer.classList.toggle("flipped");
                     backImage.style.opacity = flipContainer.classList.contains("flipped") ? "1" : "0";
+                    // Show the return button when flipped
+                    toggleLanguageButton.style.display = flipContainer.classList.contains("flipped") ? "block" : "none";
                 });
             }
         });
