@@ -23,7 +23,7 @@
         @media (max-width: 768px) { .banner-image { display: none; } }
         .buttons-container a {
             font-family: "Sackers Gothic Medium", Arial, sans-serif;
-            padding: 1px 5px; /* Smaller padding */
+            /*padding: 1px 5px;*/ /* Smaller padding */
             color: rgba(0, 0, 128, 0.9);
             text-decoration: none;
             font-size: 18px;
@@ -103,6 +103,9 @@
             background-color: transparent;
             cursor: pointer;
             transition: transform 0.3s ease;
+            border-radius: 50%; /* Circular shape */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect underneath */
+            padding: 5px; /* Add padding to ensure the content fits */
         }
         /* English Return Button */
         .english-return { background-image: url('static/English_return.png'); }
