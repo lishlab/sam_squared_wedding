@@ -169,17 +169,8 @@
                 z-index: -1;
             }
 
-            .front {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-                z-index: 2;
-            }
 
-            .back {
-                z-index: 1;
-                opacity: 0;
-            }
-            
-            /* Ensure both images are centered
+            /* Ensure both images are centered*/
             .front, .back {
                 position: absolute;
                 left: 50%;
@@ -188,13 +179,13 @@
             }
 
             /* Hide back image initially */
-            /*.back {
+            .back {
                 opacity: 0;
                 transform: translate(-50%, -50%) rotateY(180deg);
             }
 
             /* Show back image when flipped */
-            /*.flipped .front {
+            .flipped .front {
                 opacity: 0;
                 transform: translate(-50%, -50%) rotateY(180deg);
             }
@@ -202,7 +193,7 @@
             .flipped .back {
                 opacity: 1;
                 transform: translate(-50%, -50%) rotateY(0deg);
-            }*/
+            }
         }
     </style>
 </head>
