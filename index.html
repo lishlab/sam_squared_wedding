@@ -90,6 +90,24 @@
             background-position: center;
             z-index: -1;
         }
+        .return-button {
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background-size: cover;
+            background-position: center;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        /* English Return Button */
+        .english-return { background-image: url('static/English_return.png'); }
+        /* Hebrew Return Button */
+        .hebrew-return { background-image: url('static/Hebrew_return.png'); }
+        
         .invitation-container { width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .video-container, .image-container { position: absolute; width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; }
         .video-container video { width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; }
@@ -181,7 +199,7 @@
                 opacity: 1;
                 transform: translate(-50%, -50%) rotateY(0deg);
             }
-        }
+             }
     </style>
 </head>
 <body>
@@ -208,6 +226,7 @@
                 <img id="backImage" class="back" src="static/hebrew_invite.jpg" alt="Hebrew Invitation">
             </div>
         </div>
+        <button id="toggleLanguageButton" class="return-button english-return" style="display: none;"></button>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -249,6 +268,21 @@
                         backImage.style.display = "block"; // Ensure backImage is shown
                         backImage.style.opacity = "1";
                     }, 4500); /*flips after 4.5 seconds*/
+                }
+            });
+            
+            // Toggle language on button click
+            toggleLanguageButton.addEventListener("click", () => {
+                flipContainer.classList.toggle("flipped");
+                const isFlipped = flipContainer.classList.contains("flipped");
+
+                // Toggle the button image and functionality based on the current side
+                if (isFlipped) {
+                    toggleLanguageButton.classList.remove("english-return");
+                    toggleLanguageButton.classList.add("hebrew-return");
+                } else {
+                    toggleLanguageButton.classList.remove("hebrew-return");
+                    toggleLanguageButton.classList.add("english-return");
                 }
             });
 
