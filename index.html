@@ -288,9 +288,11 @@
                 if (isFlipped) {
                     toggleLanguageButton.classList.remove("english-return");
                     toggleLanguageButton.classList.add("hebrew-return");
+                    toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')"; // Set Hebrew return image
                 } else {
                     toggleLanguageButton.classList.remove("hebrew-return");
                     toggleLanguageButton.classList.add("english-return");
+                    toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')"; // Set English return image
                 }
             });
 
