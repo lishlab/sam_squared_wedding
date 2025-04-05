@@ -295,22 +295,25 @@
             toggleLanguageButton.addEventListener("click", () => {
                 flipContainer.classList.toggle("flipped");
                 const isFlipped = flipContainer.classList.contains("flipped");
-
+ 
+                toggleLanguageButton.style.transition = "background-image 0.5s ease-in-out"; // Smooth transition effect
                 // Toggle the button image and functionality based on the current side
                 if (isFlipped) {
                     // Switching to Hebrew side
                     toggleLanguageButton.classList.remove("english-return");
                     toggleLanguageButton.classList.add("hebrew-return");
-                    toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')"; // Set Hebrew return image
+                    toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')";
+                    // Force reflow to apply the changes immediately
+                    toggleLanguageButton.offsetHeight; // Trigger reflow
                 } else {
                     // Switching to English side
                     toggleLanguageButton.classList.remove("hebrew-return");
                     toggleLanguageButton.classList.add("english-return");
-                    toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')"; // Set English return image
+                    toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')";
+                    // Force reflow to apply the changes immediately
+                    toggleLanguageButton.offsetHeight; // Trigger reflow
                 }
-                // Force reflow to apply the changes immediately (fixes background not updating properly)
-                toggleLanguageButton.offsetHeight; // This triggers a reflow
-                toggleLanguageButton.style.transition = "background-image 0.5s ease-in-out"; // Smooth transition effect
+
             });
 
             // Enable manual flipping
