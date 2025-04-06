@@ -19,14 +19,19 @@
         }
         .banner-image { height: 50px; width: auto; }
         @media (max-width: 768px) { .banner-image { display: none; } }
+        .banner-image { height: 50px; width: auto; }
+        @media (max-width: 768px) { .banner-image { display: none; } }
         .buttons-container a {
             font-family: "Sackers Gothic Medium", Arial, sans-serif;
+            /*padding: 1px 5px;*/ /* Smaller padding */
             color: rgba(0, 0, 128, 0.9);
             text-decoration: none;
             font-size: 18px;
             border: none;
             border-radius: 25px;
             text-align: center;
+            background-size: cover;
+            background-position: center;
             background-color: transparent;
             display: flex;
             align-items: center;
@@ -37,20 +42,181 @@
             font-weight: bold;
             box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
             transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
-            position: relative;
+            position: relative; /* Helps with background control */
         }
+        .rsvp-button { background-image: url('static/bubble2.png'); }
+        .hebrew-button { background-image: url('static/bubble5.png'); }
+
+        /* General button styles */
+        .rsvp-button, .hebrew-button {
+            position: relative; /* Required for absolute positioning */
+            /*overflow: hidden;*/ /* Prevents overflow */
+            /* Keeps text above background z-index: -1; */
+        }
+
+        /* RSVP Button Background */
+        .rsvp-button::before {
+            content: "";
+            position: absolute;
+            top: 1%; left: -35%;
+            /*width:5000000%; height: 5%;*/ /* Moderate enlargement */
+            transform: scale(25);
+            background-image: inherit;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        .button-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(0, 0, 128, 0.9);
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        /* Hebrew Button Background (Larger) */
+        .hebrew-button::before {
+            content: "";
+            position: absolute;
+            top: -60%; left: -60%;  /* Adjusts position if needed */
+            /*width:10000000000%; height: 500%;*/ /* Larger enlargement */
+            transform: scale(15); /* Zoom in by 1.5x */
+            background-image: inherit;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        /* English Return Button */
+        .english-return { background-image: url('static/English_return.png'); }
+        /* Hebrew Return Button */
+        .hebrew-return { background-image: url('static/Hebrew_return.png'); }
+        
         .invitation-container { width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .video-container, .image-container { position: absolute; width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; }
         .video-container video { width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; }
         .image-container img { width: 100%; max-width: 100%; object-fit: contain; opacity: 0; transition: opacity 1s; position: absolute; }
-        .flip-container { display: none; position: relative; width: 100%; max-width: 100%; perspective: 1000px; }
-        .flip-container img { width: 100%; position: absolute; backface-visibility: hidden; transition: opacity 1s, transform 0.6s, z-index 0.3s; }
-        .front { transform: rotateY(0deg); z-index: 2; }
-        .back { opacity: 0; transform: rotateY(180deg); z-index: 1; }
-        .flipped .front { opacity: 0; transform: rotateY(180deg); z-index: 1; }
-        .flipped .back { opacity: 1; transform: rotateY(0deg); z-index: 2; }
+        .flip-container {
+            display: none; /* Hidden initially */
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            perspective: 1000px;
+        }
+        .flip-container img {
+            width: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            transition: opacity 1s, transform 0.6s, z-index 0.3s;
+        }
+        .front {
+            transform: rotateY(0deg);
+            z-index: 2;
+        }
+
+        .back {
+            opacity: 0;
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+        .flipped .front {
+            opacity: 0;
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+        .flipped .back {
+            opacity: 1;
+            transform: rotateY(0deg);
+            z-index: 2;
+        }
         /* New video styles */
         #dancingVideo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; z-index: 5; transition: opacity 1s; }
+        .laptop-image {
+            display: none;
+            position: absolute;
+            top: 70px; /* Matches header height */
+            left: 75%;
+            transform: translateX(-75%);
+            width: auto;
+            max-width: 100%;
+            height: calc(100vh - 70px); /* Ensures full height usage */
+            object-fit: contain; /* Ensures the entire image fills available space */
+        }
+        @media (min-width: 768px) { .laptop-image { display: block; } }
+
+        /* Mobile-specific fixes */
+        @media (max-width: 768px) {
+            .flip-container {
+                position: relative;
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: center; /* Centers images horizontally */
+                align-items: center; /* Centers images vertically */
+            }
+
+            .flip-container img {
+                position: absolute; /* Ensures both images overlap */
+                width: 90%; /* Adjust the width */
+                max-width: 100%;
+                height: auto;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%); /* Centers both images */
+            }
+
+            /* Ensure both images are centered */
+            .front, .back {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%); /* Centers the image */
+            }
+
+            /* Hide back image initially */
+            .back {
+                opacity: 0;
+                transform: translate(-50%, -50%) rotateY(180deg);
+            }
+
+            /* Show back image when flipped */
+            .flipped .front {
+                opacity: 0;
+                transform: translate(-50%, -50%) rotateY(180deg);
+            }
+
+            .flipped .back {
+                opacity: 1;
+                transform: translate(-50%, -50%) rotateY(0deg);
+            }
+            .return-button {
+                position: absolute;
+                bottom: 10px;  /* Small gap from bottom */
+                right: 10px;   /* Small gap from right */
+                transform: none; /* Remove transform so it doesn't shift weirdly */
+                width: 60px;
+                height: 65px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+                border-radius: 15px;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                display: block;
+            }
+            .return-button img {
+                width: 100%;  /* Make the image fill the button width */
+                height: 100%; /* Make the image fill the button height */
+                object-fit: contain; /* Ensure the image maintains its aspect ratio */
+                border-radius: 50%;  /* If you want a circular image */
+            }
+        }
     </style>
 </head>
 <body>
@@ -79,30 +245,28 @@
         </div>
         <button id="toggleLanguageButton" class="return-button english-return" style="display: none;"></button>
     </div>
-
-    <!-- New dancing video -->
     <video id="dancingVideo" autoplay muted playsinline>
         <source src="static/dancing.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const video = document.getElementById("introVideo");
-            const dancingVideo = document.getElementById("dancingVideo");
             const laptopImage = document.getElementById("laptopImage");
             const frontImage = document.getElementById("frontImage");
             const backImage = document.getElementById("backImage");
-            const flipContainer = document.querySelector(".flip-container");
+            const flipContainer = document.querySelector(".flip-container"); // Fix selection
             const toggleLanguageButton = document.getElementById("toggleLanguageButton");
 
             // Initially hide everything
             laptopImage.style.display = "none";
             frontImage.style.display = "none";
             backImage.style.display = "none";
-            flipContainer.style.display = "none";
-            toggleLanguageButton.style.display = "none";
+            flipContainer.style.display = "none"; // Ensure flip-container is hidden at start
+            toggleLanguageButton.style.display = "none"; // Ensure button is hidden at start
             dancingVideo.style.opacity = "0"; // Hide dancing video initially
+
+
 
             video.playbackRate = 0.5;
 
@@ -113,46 +277,76 @@
             });
 
             video.addEventListener("ended", () => {
-                video.style.display = "none"; // Hide intro video
+                video.style.display = "none"; // Hide video
                 dancingVideo.style.opacity = "1"; // Show dancing video
                 dancingVideo.play(); // Start dancing video
 
                 if (window.innerWidth > 768) {
+                    // Desktop: Show only invite_test.jpg
                     laptopImage.style.display = "block";
                     laptopImage.style.opacity = "1";
                 } else {
-                    flipContainer.style.display = "block";
+                    // Mobile: Show front image and allow flip
+                    flipContainer.style.display = "block"; // Show flip-container
                     frontImage.style.display = "block";
                     frontImage.style.opacity = "1";
 
                     setTimeout(() => {
                         flipContainer.classList.add("flipped");
-                        backImage.style.display = "block";
+                        backImage.style.display = "block"; // Ensure backImage is shown
                         backImage.style.opacity = "1";
+                        // Show the return button after flip
                         toggleLanguageButton.style.display = "block";
-                    }, 4000);
+                    }, 4000); /*flips after 4.0 seconds*/
                 }
             });
-
+            
+            // Toggle language on button click
             toggleLanguageButton.addEventListener("click", () => {
                 const isFlipped = flipContainer.classList.contains("flipped");
-
-                toggleLanguageButton.style.transition = "background-image 0.5s ease-in-out";
+ 
+                toggleLanguageButton.style.transition = "background-image 0.5s ease-in-out"; // Smooth transition effect
+                // Toggle the button image and functionality based on the current side, Since the class toggle happens in the same function as the background image change, the browser might not register the change immediately. Therefore separate the background image switch and class toggle by introducing a slight delay. This ensures that the browser registers the background image change first, before flipping the content.
                 if (isFlipped) {
+                    // Switching to Hebrew side
                     toggleLanguageButton.classList.remove("english-return");
                     toggleLanguageButton.classList.add("hebrew-return");
+                    // Delay background image change slightly
                     setTimeout(() => {
                         toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')";
-                    }, 100);
+                    }, 100); // 100ms delay before applying the background image
                 } else {
+                    // Switching to English side
                     toggleLanguageButton.classList.remove("hebrew-return");
                     toggleLanguageButton.classList.add("english-return");
+                    // Delay background image change slightly
                     setTimeout(() => {
                         toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')";
-                    }, 100);
+                    }, 100); // 100ms delay before applying the background image
                 }
+                // Now toggle the flip class to change the images
                 flipContainer.classList.toggle("flipped");
+
             });
+
+            // Enable manual flipping, diable for now bc confusing with return buttons
+            /*if (window.innerWidth <= 768) {
+                flipContainer.addEventListener("click", () => {
+                    const isCurrentlyFlipped = flipContainer.classList.contains("flipped");
+                    flipContainer.classList.toggle("flipped");
+
+                    // Ensure the correct return button is always visible and styled
+                    toggleLanguageButton.style.display = "block";
+                    toggleLanguageButton.classList.remove(isCurrentlyFlipped ? "hebrew-return" : "english-return");
+                    toggleLanguageButton.classList.add(isCurrentlyFlipped ? "english-return" : "hebrew-return");
+                    toggleLanguageButton.style.backgroundImage = isCurrentlyFlipped
+                        ? "url('static/English_return.png')"
+                        : "url('static/Hebrew_return.png')";
+
+                    // Optional: adjust image opacity
+                    backImage.style.opacity = flipContainer.classList.contains("flipped") ? "1" : "0";
+                });
+            }*/
         });
     </script>
 </body>
