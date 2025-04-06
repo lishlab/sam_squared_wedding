@@ -58,11 +58,8 @@
         .rsvp-button::before {
             content: "";
             position: absolute;
-            /*top: 0; left: 0;*/
-            /*top: .01%; left: 3%;*/
-            width:5000000%; height: 5%; /* Moderate enlargement */
-            /*width: 5%;*/
-            /*height: 5%;*/
+            top: 1%; left: -35%;
+            /*width:5000000%; height: 5%;*/ /* Moderate enlargement */
             transform: scale(20);
             background-image: inherit;
             background-size: cover;
@@ -325,10 +322,19 @@
             // Enable manual flipping
             if (window.innerWidth <= 768) {
                 flipContainer.addEventListener("click", () => {
+                    const isCurrentlyFlipped = flipContainer.classList.contains("flipped");
                     flipContainer.classList.toggle("flipped");
+
+                    // Ensure the correct return button is always visible and styled
+                    toggleLanguageButton.style.display = "block";
+                    toggleLanguageButton.classList.remove(isCurrentlyFlipped ? "hebrew-return" : "english-return");
+                    toggleLanguageButton.classList.add(isCurrentlyFlipped ? "english-return" : "hebrew-return");
+                    toggleLanguageButton.style.backgroundImage = isCurrentlyFlipped
+                        ? "url('static/English_return.png')"
+                        : "url('static/Hebrew_return.png')";
+
+                    // Optional: adjust image opacity
                     backImage.style.opacity = flipContainer.classList.contains("flipped") ? "1" : "0";
-                    // Show the return button when flipped
-                    toggleLanguageButton.style.display = flipContainer.classList.contains("flipped") ? "block" : "none";
                 });
             }
         });
