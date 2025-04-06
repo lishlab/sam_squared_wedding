@@ -293,7 +293,6 @@
             
             // Toggle language on button click
             toggleLanguageButton.addEventListener("click", () => {
-                flipContainer.classList.toggle("flipped");
                 const isFlipped = flipContainer.classList.contains("flipped");
  
                 toggleLanguageButton.style.transition = "background-image 0.5s ease-in-out"; // Smooth transition effect
@@ -302,17 +301,15 @@
                     // Switching to Hebrew side
                     toggleLanguageButton.classList.remove("english-return");
                     toggleLanguageButton.classList.add("hebrew-return");
-                    setTimeout(() => {
-                        toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')";
-                    }, 10); // Apply after a small delay to ensure smooth transition
+                    toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')"; // Apply immediately
                 } else {
                     // Switching to English side
                     toggleLanguageButton.classList.remove("hebrew-return");
                     toggleLanguageButton.classList.add("english-return");
-                    setTimeout(() => {
-                        toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')";
-                    }, 10); // Apply after a small delay to ensure smooth transition
+                    toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')"; // Apply immediately
                 }
+                // Now toggle the flip class to change the images
+                flipContainer.classList.toggle("flipped");
 
             });
 
