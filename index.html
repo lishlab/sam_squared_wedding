@@ -251,7 +251,7 @@
             const backImage = document.getElementById("backImage");
             const flipContainer = document.querySelector(".flip-container"); // Fix selection
             const toggleLanguageButton = document.getElementById("toggleLanguageButton");
-            let hasAutoFlipped = false; 
+            let hasAutoFlipped = false;
             
             // Initially hide everything
             laptopImage.style.display = "none";
@@ -330,32 +330,22 @@
             if (window.innerWidth <= 768) {
                 flipContainer.addEventListener("click", () => {
                     const isCurrentlyFlipped = flipContainer.classList.contains("flipped");
-                    flipContainer.classList.toggle("flipped");
 
                     // Always show the return button
                     toggleLanguageButton.style.display = "block";
 
                     // Determine button state only if auto-flip already occurred
-                    if (hasAutoFlipped) {
-                        toggleLanguageButton.classList.remove(isCurrentlyFlipped ? "hebrew-return" : "english-return");
-                        toggleLanguageButton.classList.add(isCurrentlyFlipped ? "english-return" : "hebrew-return");
-                        toggleLanguageButton.style.backgroundImage = isCurrentlyFlipped
-                            ? "url('static/English_return.png')"
-                            : "url('static/Hebrew_return.png')";
+                    if (isNowFlipped) {
+                        toggleLanguageButton.classList.remove("english-return");
+                        toggleLanguageButton.classList.add("hebrew-return");
+                        toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')";
                     } else {
-                        // Before auto-flip: assume English side shown initially
-                        if (flipContainer.classList.contains("flipped")) {
-                            toggleLanguageButton.classList.remove("english-return");
-                            toggleLanguageButton.classList.add("hebrew-return");
-                            toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')";
-                        } else {
-                            toggleLanguageButton.classList.remove("hebrew-return");
-                            toggleLanguageButton.classList.add("english-return");
-                            toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')";
-                        }
+                        toggleLanguageButton.classList.remove("hebrew-return");
+                        toggleLanguageButton.classList.add("english-return");
+                        toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')";
                     }
 
-                    backImage.style.opacity = flipContainer.classList.contains("flipped") ? "1" : "0";
+                    backImage.style.opacity = isNowFlipped ? "1" : "0";
                 });
             }
         });
