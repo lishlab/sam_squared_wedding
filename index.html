@@ -319,8 +319,8 @@
 
             });
 
-            // Enable manual flipping
-            if (window.innerWidth <= 768) {
+            // Enable manual flipping, diable for now bc confusing with return buttons
+            /*if (window.innerWidth <= 768) {
                 flipContainer.addEventListener("click", () => {
                     const isCurrentlyFlipped = flipContainer.classList.contains("flipped");
                     flipContainer.classList.toggle("flipped");
@@ -336,7 +336,7 @@
                     // Optional: adjust image opacity
                     backImage.style.opacity = flipContainer.classList.contains("flipped") ? "1" : "0";
                 });
-            }
+            }*/
         });
     </script>
 </body>
