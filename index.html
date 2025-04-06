@@ -93,7 +93,7 @@
         .return-button {
             position: absolute;
             top: 50%; /* Center vertically */
-            left: 0%; /* Align it to the far right */
+            right: 0%; /* Align it to the far right */
             transform: translateX(-50%);
             width: 70px;
             height: 70px;
@@ -103,7 +103,7 @@
             background-color: transparent;
             cursor: pointer;
             transition: transform 0.3s ease;
-            border-radius: 50%; /* Circular shape */
+            border-radius: 60%; /* Circular shape */
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Shadow effect underneath */
             /*padding: 10px;*/ /* Add padding to ensure the content fits */
         }
@@ -296,17 +296,23 @@
                 const isFlipped = flipContainer.classList.contains("flipped");
  
                 toggleLanguageButton.style.transition = "background-image 0.5s ease-in-out"; // Smooth transition effect
-                // Toggle the button image and functionality based on the current side
+                // Toggle the button image and functionality based on the current side, Since the class toggle happens in the same function as the background image change, the browser might not register the change immediately. Therefore separate the background image switch and class toggle by introducing a slight delay. This ensures that the browser registers the background image change first, before flipping the content.
                 if (isFlipped) {
                     // Switching to Hebrew side
                     toggleLanguageButton.classList.remove("english-return");
                     toggleLanguageButton.classList.add("hebrew-return");
-                    toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')"; // Apply immediately
+                    // Delay background image change slightly
+                    setTimeout(() => {
+                        toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')";
+                    }, 100); // 100ms delay before applying the background image
                 } else {
                     // Switching to English side
                     toggleLanguageButton.classList.remove("hebrew-return");
                     toggleLanguageButton.classList.add("english-return");
-                    toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')"; // Apply immediately
+                    // Delay background image change slightly
+                    setTimeout(() => {
+                        toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')";
+                    }, 100); // 100ms delay before applying the background image
                 }
                 // Now toggle the flip class to change the images
                 flipContainer.classList.toggle("flipped");
