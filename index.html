@@ -90,25 +90,6 @@
             background-position: center;
             z-index: -1;
         }
-        @media (max-width: 768px) {
-            .return-button {
-                position: absolute;
-                bottom: 10%; /* Center vertically */
-                right: 5%; /* Align it to the right */
-                transform: translateY(50%); /* Center vertically while keeping it on the right */
-                width: 60px;
-                height: 65px; /* Increase the height to elongate vertically */
-                background-size: cover;
-                background-position: center;
-                border: none;
-                background-color: transparent;
-                cursor: pointer;
-                transition: transform 0.3s ease;
-                border-radius: 55%; /* Circular shape */
-                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Shadow effect underneath */
-                display: block; /* Make sure it's visible */
-                padding: 10px; /* Add padding to ensure the content fits */
-            }
         /* English Return Button */
         .english-return { background-image: url('static/English_return.png'); }
         /* Hebrew Return Button */
@@ -211,10 +192,20 @@
             }
             .return-button {
                 position: absolute;
-                bottom: 0%;/* 90%; Position the button under the image */
-                right: 0%;/*50%; Position the button under the image */
-                transform: translateY(50%);
-                display: block; /* Make sure it's visible */
+                bottom: 10px;  /* Small gap from bottom */
+                right: 10px;   /* Small gap from right */
+                transform: none; /* Remove transform so it doesn't shift weirdly */
+                width: 60px;
+                height: 65px;
+                background-size: cover;
+                background-position: center;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+                border-radius: 55%;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                display: block;
             }
             .return-button img {
                 width: 100%;  /* Make the image fill the button width */
