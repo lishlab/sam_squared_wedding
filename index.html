@@ -287,8 +287,16 @@
                         backImage.style.opacity = "1";
                         // Show the return button after flip
                         toggleLanguageButton.style.display = "block";
+                        
+                        // Play dancing video after flip
+                        const dancingVideo = document.getElementById("dancingVideo");
+                        dancingVideo.style.display = "block";
+                        dancingVideo.playbackRate = 0.5;
+                        dancingVideo.play();
+                        
                     }, 4000); /*flips after 4.0 seconds*/
                 }
+
             });
             
             // Toggle language on button click
@@ -318,6 +326,11 @@
                 flipContainer.classList.toggle("flipped");
 
             });
+            
+            <video id="dancingVideo" muted loop playsinline style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; max-height: 25vh; object-fit: cover; z-index: 5;">
+                <source src="static/dancing.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
 
             // Enable manual flipping, diable for now bc confusing with return buttons
             /*if (window.innerWidth <= 768) {
