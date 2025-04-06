@@ -7,6 +7,8 @@
     <link rel="preload" href="static/bubble2.png" as="image">
     <link rel="preload" href="static/bubble5.png" as="image">
     <link rel="preload" href="static/hebrew_banner.png" as="image">
+    <link rel="preload" href="static/Sam_Squared_Wedding_Invite.jpg" as="image">
+    <link rel="preload" href="static/hebrew_invite.jpg" as="image">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { width: 100%; height: 100%; overflow: hidden; font-family: "Sackers Gothic Medium"; background-color: #F0F5FA; }
@@ -243,6 +245,10 @@
         </div>
         <button id="toggleLanguageButton" class="return-button english-return" style="display: none;"></button>
     </div>
+    <video id="dancingVideo" muted loop playsinline style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; max-height: 25vh; object-fit: cover; z-index: 5;">
+        <source src="static/dancing.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const video = document.getElementById("introVideo");
@@ -326,11 +332,7 @@
                 flipContainer.classList.toggle("flipped");
 
             });
-            
-            <video id="dancingVideo" muted loop playsinline style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; max-height: 25vh; object-fit: cover; z-index: 5;">
-                <source src="static/dancing.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        
 
             // Enable manual flipping, diable for now bc confusing with return buttons
             /*if (window.innerWidth <= 768) {
@@ -351,6 +353,7 @@
                 });
             }*/
         });
+
     </script>
 </body>
 </html>
