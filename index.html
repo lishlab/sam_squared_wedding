@@ -11,29 +11,11 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { width: 100%; height: 100%; overflow: hidden; font-family: "Sackers Gothic Medium"; background-color: #F0F5FA; }
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 10px 20px; background-color: #F0F5FA; display: flex; justify-content: center; align-items: center; z-index: 10; border-bottom: 2px solid rgba(0, 0, 128, 0.3);}
-        /* Video container in header */
-        .video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;  /* Match the header height */
-            overflow: hidden;
-            z-index: -1; /* Keeps video behind other elements */
-        }
-
-        .video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            animation: slow-motion 1.5s forwards; /* Slow down the video */
-        }
         .buttons-container {
             display: flex;
             flex-direction: row;
             gap: 15px;
             align-items: center;
-            z-index: 10;
         }
         .banner-image { height: 50px; width: auto; }
         @media (max-width: 768px) { .banner-image { display: none; } }
@@ -150,8 +132,6 @@
             transform: rotateY(0deg);
             z-index: 2;
         }
-        /* New video styles */
-        #dancingVideo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; z-index: 5; transition: opacity 1s; }
         .laptop-image {
             display: none;
             position: absolute;
@@ -239,12 +219,6 @@
 </head>
 <body>
     <div class="header">
-        <div class="video-container">
-            <video id="dancingVideo" autoplay muted loop playsinline>
-                <source src="static/dancing.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
         <div class="buttons-container">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSftQvuFAmT_iVOIE5pw2ssTwmfT_8H0TCa7KXKcInvmv-dk3w/viewform" target="_blank" class="rsvp-button">
                 <span class="button-text">RSVP</span>
@@ -269,10 +243,6 @@
         </div>
         <button id="toggleLanguageButton" class="return-button english-return" style="display: none;"></button>
     </div>
-    <video id="dancingVideo" autoplay muted playsinline>
-        <source src="static/dancing.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const video = document.getElementById("introVideo");
@@ -288,8 +258,6 @@
             backImage.style.display = "none";
             flipContainer.style.display = "none"; // Ensure flip-container is hidden at start
             toggleLanguageButton.style.display = "none"; // Ensure button is hidden at start
-            dancingVideo.style.opacity = "0"; // Hide dancing video initially
-
 
 
             video.playbackRate = 0.5;
@@ -302,8 +270,6 @@
 
             video.addEventListener("ended", () => {
                 video.style.display = "none"; // Hide video
-                dancingVideo.style.opacity = "1"; // Show dancing video
-                dancingVideo.play(); // Start dancing video
 
                 if (window.innerWidth > 768) {
                     // Desktop: Show only invite_test.jpg
