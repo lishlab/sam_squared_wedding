@@ -90,23 +90,24 @@
             background-position: center;
             z-index: -1;
         }
-        .return-button {
-            position: absolute;
-            top: 50%; /* Center vertically */
-            right: 10%; /* Align it to the far right */
-            transform: translateY(-50%); /* Center vertically while keeping it on the right */
-            width: 60px;
-            height: 60px;/* Increase the height to elongate vertically */
-            background-size: cover;
-            background-position: center;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            border-radius: 55%; /* Circular shape */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Shadow effect underneath */
-            /*padding: 10px;*/ /* Add padding to ensure the content fits */
-        }
+        @media (max-width: 768px) {
+            .return-button {
+                position: absolute;
+                top: 50%; /* Center vertically */
+                right: 10%; /* Align it to the right */
+                transform: translateY(-50%); /* Center vertically while keeping it on the right */
+                width: 60px;
+                height: 60px; /* Increase the height to elongate vertically */
+                background-size: cover;
+                background-position: center;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+                border-radius: 55%; /* Circular shape */
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Shadow effect underneath */
+                display: block; /* Make sure it's visible */
+            }
         /* English Return Button */
         .english-return { background-image: url('static/English_return.png'); }
         /* Hebrew Return Button */
