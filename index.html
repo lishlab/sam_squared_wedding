@@ -93,9 +93,9 @@
         @media (max-width: 768px) {
             .return-button {
                 position: absolute;
-                top: 50%; /* Center vertically */
+                bottom: 10%; /* Center vertically */
                 right: 10%; /* Align it to the right */
-                transform: translateY(-50%); /* Center vertically while keeping it on the right */
+                transform: translateY(50%); /* Center vertically while keeping it on the right */
                 width: 60px;
                 height: 65px; /* Increase the height to elongate vertically */
                 background-size: cover;
@@ -211,10 +211,16 @@
             }
             .return-button {
                 position: absolute;
-                top: 50%;/* 90%; Position the button under the image */
-                right: 10%;/*50%; Position the button under the image */
-                transform: translateY(-50%);
+                bottom: 0%;/* 90%; Position the button under the image */
+                right: 0%;/*50%; Position the button under the image */
+                transform: translateY(50%);
                 display: block; /* Make sure it's visible */
+            }
+            .return-button img {
+                width: 100%;  /* Make the image fill the button width */
+                height: 100%; /* Make the image fill the button height */
+                object-fit: contain; /* Ensure the image maintains its aspect ratio */
+                border-radius: 50%;  /* If you want a circular image */
             }
         }
     </style>
