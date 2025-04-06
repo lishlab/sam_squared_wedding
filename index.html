@@ -9,7 +9,7 @@
     <link rel="preload" href="static/hebrew_banner.png" as="image">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { width: 100%; height: 100%; overflow-x: hidden; /* allow vertical scrolling */ font-family: "Sackers Gothic Medium"; background-color: #F0F5FA; }
+        body, html { width: 100%; height: 100%; overflow: hidden; font-family: "Sackers Gothic Medium"; background-color: #F0F5FA; }
         .header { position: fixed; top: 0; left: 0; width: 100%; padding: 10px 20px; background-color: #F0F5FA; display: flex; justify-content: center; align-items: center; z-index: 10; border-bottom: 2px solid rgba(0, 0, 128, 0.3);}
         .buttons-container {
             display: flex;
@@ -96,26 +96,8 @@
         .hebrew-return { background-image: url('static/Hebrew_return.png'); }
         
         .invitation-container { width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .video-container {
-            position: absolute;
-            width: 100%;
-            height: calc(100vh - 70px - 200px); /* Shrink the height by 200px for the video */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1;
-        }
-
-        .video-container video { width: 100%; height: 100%; object-fit: contain; transition: opacity 1s; }
-        .image-container {
-            position: absolute;
-            width: 100%;
-            height: calc(100vh - 70px); /* Full height minus the header */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2; /* Ensure images are above the video */
-        }
+        .video-container, .image-container { position: absolute; width: 100%; height: calc(100vh - 70px); display: flex; align-items: center; justify-content: center; }
+        .video-container video { width: 100%; height: 100%; object-fit: cover; transition: opacity 1s; }
         .image-container img { width: 100%; max-width: 100%; object-fit: contain; opacity: 0; transition: opacity 1s; position: absolute; }
         .flip-container {
             display: none; /* Hidden initially */
@@ -150,11 +132,6 @@
             transform: rotateY(0deg);
             z-index: 2;
         }
-        .laptop-image, .flip-container {
-            position: absolute;
-            z-index: 3; /* Ensure images are above the video */
-        }
-
         .laptop-image {
             display: none;
             position: absolute;
@@ -165,37 +142,6 @@
             max-width: 100%;
             height: calc(100vh - 70px); /* Ensures full height usage */
             object-fit: contain; /* Ensures the entire image fills available space */
-            
-        }
-        .dancing-video-container {
-            position: relative;
-            width: 100%;
-            height: 200px; /* Smaller height for the video */
-            overflow: hidden;
-            margin-top: 10px; /* Adds a small gap between the content and video */
-        }
-
-        .dancing-video-container video {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-        .bottom-banner {
-            position: fixed; /* fixed instead of relative */
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 200px; /* Smaller height for the video */
-            overflow: hidden;
-            z-index: 3; /* make sure it stays above content but below buttons if needed */
-            border-top: 2px solid rgba(0, 0, 128, 0.3);
-            background-color: #F0F5FA; /* optional if you want a solid background behind it */
-        }
-
-        .bottom-banner video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
         @media (min-width: 768px) { .laptop-image { display: block; } }
 
@@ -296,12 +242,6 @@
             </div>
         </div>
         <button id="toggleLanguageButton" class="return-button english-return" style="display: none;"></button>
-    </div>
-    <div class="bottom-banner">
-        <video autoplay loop muted playsinline>
-            <source src="static/dancing.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
