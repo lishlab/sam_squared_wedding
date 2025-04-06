@@ -216,6 +216,13 @@
                 object-fit: contain; /* Ensure the image maintains its aspect ratio */
                 border-radius: 50%;  /* If you want a circular image */
             }
+            #dancingVideo {
+                transition: opacity 1s ease;
+                opacity: 0;
+            }
+            #dancingVideo.show {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -296,6 +303,7 @@
                         
                         // Play dancing video after flip
                         const dancingVideo = document.getElementById("dancingVideo");
+                        dancingVideo.classList.add("show");
                         dancingVideo.style.display = "block";
                         dancingVideo.playbackRate = 0.5;
                         dancingVideo.play();
@@ -307,30 +315,30 @@
             
             // Toggle language on button click
             toggleLanguageButton.addEventListener("click", () => {
-                const isFlipped = flipContainer.classList.contains("flipped");
- 
-                toggleLanguageButton.style.transition = "background-image 0.5s ease-in-out"; // Smooth transition effect
-                // Toggle the button image and functionality based on the current side, Since the class toggle happens in the same function as the background image change, the browser might not register the change immediately. Therefore separate the background image switch and class toggle by introducing a slight delay. This ensures that the browser registers the background image change first, before flipping the content.
-                if (isFlipped) {
-                    // Switching to Hebrew side
+                flipContainer.classList.toggle("flipped");
+                const isNowFlipped = flipContainer.classList.contains("flipped");
+
+                toggleLanguageButton.style.transition = "background-image 0.5s ease-in-out";
+
+                if (isNowFlipped) {
+                    // Now Hebrew side is showing
                     toggleLanguageButton.classList.remove("english-return");
                     toggleLanguageButton.classList.add("hebrew-return");
-                    // Delay background image change slightly
-                    setTimeout(() => {
-                        toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')";
-                    }, 100); // 100ms delay before applying the background image
+                    toggleLanguageButton.style.backgroundImage = "url('static/Hebrew_return.png')";
                 } else {
-                    // Switching to English side
+                    // Now English side is showing
                     toggleLanguageButton.classList.remove("hebrew-return");
                     toggleLanguageButton.classList.add("english-return");
-                    // Delay background image change slightly
-                    setTimeout(() => {
-                        toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')";
-                    }, 100); // 100ms delay before applying the background image
+                    toggleLanguageButton.style.backgroundImage = "url('static/English_return.png')";
                 }
-                // Now toggle the flip class to change the images
-                flipContainer.classList.toggle("flipped");
 
+                // Restart the dancing video each time
+                const dancingVideo = document.getElementById("dancingVideo");
+                if (dancingVideo) {
+                    dancingVideo.style.display = "block";
+                    dancingVideo.currentTime = 0;
+                    dancingVideo.play();
+                }
             });
         
 
